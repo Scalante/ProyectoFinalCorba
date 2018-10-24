@@ -1,5 +1,6 @@
 package Frame;
 
+import AppPackage.AnimationClass;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -47,7 +48,6 @@ public class Medicamento extends javax.swing.JInternalFrame {
         lblGuardar2 = new javax.swing.JLabel();
         lblGuardar3 = new javax.swing.JLabel();
         lblGuardar4 = new javax.swing.JLabel();
-        jSeparator1 = new javax.swing.JSeparator();
         lblCodigo = new javax.swing.JLabel();
         jTextField1 = new javax.swing.JTextField();
         jComboBox1 = new javax.swing.JComboBox<>();
@@ -70,6 +70,17 @@ public class Medicamento extends javax.swing.JInternalFrame {
         jLabel8 = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
         jLabel10 = new javax.swing.JLabel();
+        lblFiltrar = new javax.swing.JLabel();
+        txtFiltrar = new javax.swing.JTextField();
+        lblFlechaAbajo = new javax.swing.JLabel();
+        lblTituloMedicamento = new javax.swing.JLabel();
+        lblFlechaArriba = new javax.swing.JLabel();
+        lblDato = new javax.swing.JLabel();
+        jSeparator2 = new javax.swing.JSeparator();
+        jSeparator5 = new javax.swing.JSeparator();
+        jSeparator4 = new javax.swing.JSeparator();
+        jSeparator6 = new javax.swing.JSeparator();
+        jSeparator7 = new javax.swing.JSeparator();
 
         setBackground(new java.awt.Color(255, 255, 255));
         setClosable(true);
@@ -104,6 +115,11 @@ public class Medicamento extends javax.swing.JInternalFrame {
         btnBuscar.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Buscar2.png"))); // NOI18N
         btnBuscar.setRolloverSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Buscar2.png"))); // NOI18N
         btnBuscar.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Buscar.png"))); // NOI18N
+        btnBuscar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnBuscarActionPerformed(evt);
+            }
+        });
         getContentPane().add(btnBuscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 310, -1, -1));
 
         btnEliminar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Eliminar.png"))); // NOI18N
@@ -171,108 +187,201 @@ public class Medicamento extends javax.swing.JInternalFrame {
         lblGuardar4.setText("Eliminar");
         getContentPane().add(lblGuardar4, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 360, -1, -1));
 
-        jSeparator1.setBackground(new java.awt.Color(0, 0, 0));
-        jSeparator1.setForeground(new java.awt.Color(0, 0, 0));
-        jSeparator1.setOrientation(javax.swing.SwingConstants.VERTICAL);
-        getContentPane().add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(328, 0, 10, 500));
-
         lblCodigo.setFont(new java.awt.Font("Decker", 1, 14)); // NOI18N
         lblCodigo.setForeground(new java.awt.Color(0, 0, 0));
         lblCodigo.setText("Presentación:");
-        getContentPane().add(lblCodigo, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 110, -1, 20));
+        getContentPane().add(lblCodigo, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 110, -1, 20));
 
         jTextField1.setBackground(new java.awt.Color(214, 217, 223));
         jTextField1.setFont(new java.awt.Font("Decker", 1, 14)); // NOI18N
         jTextField1.setForeground(new java.awt.Color(51, 51, 255));
         jTextField1.setBorder(null);
-        getContentPane().add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 10, 120, 20));
+        getContentPane().add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 30, 120, 20));
 
         jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        getContentPane().add(jComboBox1, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 110, 100, -1));
+        getContentPane().add(jComboBox1, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 110, 100, -1));
 
         jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        getContentPane().add(jComboBox2, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 110, 90, -1));
+        getContentPane().add(jComboBox2, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 110, 90, -1));
 
         jComboBox3.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        getContentPane().add(jComboBox3, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 160, 120, -1));
+        getContentPane().add(jComboBox3, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 160, 120, -1));
 
         jLabel2.setFont(new java.awt.Font("Decker", 1, 14)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(0, 0, 0));
         jLabel2.setText("Laboratorio:");
-        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 160, -1, -1));
+        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 160, -1, 30));
 
         jTextField2.setBackground(new java.awt.Color(214, 217, 223));
         jTextField2.setFont(new java.awt.Font("Decker", 1, 14)); // NOI18N
         jTextField2.setForeground(new java.awt.Color(51, 51, 255));
         jTextField2.setBorder(null);
-        getContentPane().add(jTextField2, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 210, 120, 20));
+        getContentPane().add(jTextField2, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 210, 120, 20));
 
         jLabel3.setFont(new java.awt.Font("Decker", 1, 14)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(0, 0, 0));
         jLabel3.setText("Cantidad:");
-        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 260, -1, 20));
+        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 250, -1, 20));
 
         jTextField3.setBackground(new java.awt.Color(214, 217, 223));
         jTextField3.setFont(new java.awt.Font("Decker", 1, 14)); // NOI18N
         jTextField3.setForeground(new java.awt.Color(51, 51, 255));
         jTextField3.setBorder(null);
-        getContentPane().add(jTextField3, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 260, 120, 20));
-        getContentPane().add(jDateChooser1, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 310, -1, -1));
+        getContentPane().add(jTextField3, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 250, 120, 20));
+        getContentPane().add(jDateChooser1, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 290, -1, -1));
 
         jLabel5.setFont(new java.awt.Font("Decker", 1, 14)); // NOI18N
         jLabel5.setForeground(new java.awt.Color(0, 0, 0));
         jLabel5.setText("Fecha Caducidad:");
-        getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 310, -1, 30));
+        getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 290, -1, 30));
 
         jLabel6.setFont(new java.awt.Font("Decker", 1, 14)); // NOI18N
         jLabel6.setForeground(new java.awt.Color(0, 0, 0));
         jLabel6.setText("Ubicación:");
-        getContentPane().add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 360, -1, 20));
+        getContentPane().add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 330, -1, 20));
 
         jTextField4.setBackground(new java.awt.Color(214, 217, 223));
         jTextField4.setFont(new java.awt.Font("Decker", 1, 14)); // NOI18N
         jTextField4.setForeground(new java.awt.Color(51, 51, 255));
         jTextField4.setBorder(null);
-        getContentPane().add(jTextField4, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 360, 120, 20));
+        getContentPane().add(jTextField4, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 330, 120, 20));
 
         lblCodigo1.setFont(new java.awt.Font("Decker", 1, 14)); // NOI18N
         lblCodigo1.setForeground(new java.awt.Color(0, 0, 0));
         lblCodigo1.setText("Código:");
-        getContentPane().add(lblCodigo1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, -1, 20));
+        getContentPane().add(lblCodigo1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 30, -1, 20));
 
         jTextField5.setBackground(new java.awt.Color(214, 217, 223));
         jTextField5.setFont(new java.awt.Font("Decker", 1, 14)); // NOI18N
         jTextField5.setForeground(new java.awt.Color(51, 51, 255));
         jTextField5.setBorder(null);
-        getContentPane().add(jTextField5, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 60, 120, 20));
+        getContentPane().add(jTextField5, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 60, 120, 20));
 
         lblCodigo2.setFont(new java.awt.Font("Decker", 1, 14)); // NOI18N
         lblCodigo2.setForeground(new java.awt.Color(0, 0, 0));
         lblCodigo2.setText("Nombre Medicamento:");
-        getContentPane().add(lblCodigo2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 60, -1, 20));
+        getContentPane().add(lblCodigo2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 60, -1, 20));
 
         jLabel7.setFont(new java.awt.Font("Decker", 1, 14)); // NOI18N
         jLabel7.setForeground(new java.awt.Color(0, 0, 0));
         jLabel7.setText("Precio de Venta:");
-        getContentPane().add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 210, -1, 20));
+        getContentPane().add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 210, -1, 20));
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Capturkla.png"))); // NOI18N
-        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 30, 120, 3));
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 50, 120, 3));
 
         jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Capturkla.png"))); // NOI18N
-        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 77, 120, 10));
+        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 80, 120, 4));
 
         jLabel8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Capturkla.png"))); // NOI18N
-        getContentPane().add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 230, 120, 4));
+        getContentPane().add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 230, 120, 4));
 
         jLabel9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Capturkla.png"))); // NOI18N
-        getContentPane().add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 380, 120, 4));
+        getContentPane().add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 350, 120, 4));
 
         jLabel10.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Capturkla.png"))); // NOI18N
-        getContentPane().add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 280, 120, 4));
+        getContentPane().add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 270, 120, 4));
+
+        lblFiltrar.setFont(new java.awt.Font("Decker", 1, 14)); // NOI18N
+        lblFiltrar.setForeground(new java.awt.Color(0, 0, 0));
+        lblFiltrar.setText("Filtrar:");
+        getContentPane().add(lblFiltrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 10, -1, 30));
+
+        txtFiltrar.setBackground(new java.awt.Color(153, 153, 153));
+        txtFiltrar.setFont(new java.awt.Font("Decker", 1, 12)); // NOI18N
+        txtFiltrar.setForeground(new java.awt.Color(0, 0, 255));
+        getContentPane().add(txtFiltrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(760, 10, 110, 30));
+
+        lblFlechaAbajo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/drop-down-arrow.png"))); // NOI18N
+        lblFlechaAbajo.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        lblFlechaAbajo.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                lblFlechaAbajoMouseClicked(evt);
+            }
+        });
+        getContentPane().add(lblFlechaAbajo, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 0, 40, 20));
+
+        lblTituloMedicamento.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Medicamentos.gif"))); // NOI18N
+        getContentPane().add(lblTituloMedicamento, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, -30, -1, -1));
+
+        lblFlechaArriba.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/caret-arrow-up.png"))); // NOI18N
+        lblFlechaArriba.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        lblFlechaArriba.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                lblFlechaArribaMouseClicked(evt);
+            }
+        });
+        getContentPane().add(lblFlechaArriba, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, -30, -1, -1));
+
+        lblDato.setFont(new java.awt.Font("Decker", 1, 14)); // NOI18N
+        lblDato.setForeground(new java.awt.Color(0, 0, 0));
+        lblDato.setText("Datos");
+        getContentPane().add(lblDato, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 0, -1, -1));
+        getContentPane().add(jSeparator2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 30, 10));
+        getContentPane().add(jSeparator5, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 370, 320, 10));
+
+        jSeparator4.setOrientation(javax.swing.SwingConstants.VERTICAL);
+        getContentPane().add(jSeparator4, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 12, 10, 360));
+
+        jSeparator6.setOrientation(javax.swing.SwingConstants.VERTICAL);
+        getContentPane().add(jSeparator6, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 10, 360));
+        getContentPane().add(jSeparator7, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 10, 250, 10));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed
+        
+        //Programación para que el icono del filtrar, hacer un efecto de aparecer.        
+        //Instanciación de la libreria AnimatonClass.     
+        
+        AnimationClass animacion = new AnimationClass();
+        
+        //******Filtrar******
+        //Sirve para que el campo de txtFiltrar se visualice.
+
+        //El primer parametro es la posición actual del elemento gráfico
+        //La segunda es la posición que quiera mover el elemento grafico.
+        animacion.jTextFieldXLeft(760,650, 10, 5, txtFiltrar);
+        //animacion.jTextFieldXRight(650,760, 10, 5, txtFiltrar);
+    }//GEN-LAST:event_btnBuscarActionPerformed
+
+    private void lblFlechaAbajoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblFlechaAbajoMouseClicked
+        
+        //Programación para que el icono del filtrar, hacer un efecto de aparecer.        
+        //Instanciación de la libreria AnimatonClass.     
+        
+        AnimationClass animacion = new AnimationClass();
+        
+        //******Filtrar******
+        //Sirve para que el campo de txtFiltrar se visualice.
+
+        //El primer parametro es la posición actual del elemento gráfico
+        //La segunda es la posición que quiera mover el elemento grafico.
+        animacion.jLabelYDown(-30,20, 10, 5, lblTituloMedicamento);
+        //animacion.jTextFieldXRight(650,760, 10, 5, txtFiltrar);
+        animacion.jLabelYUp(0,-30, 10, 5, lblFlechaAbajo);
+        animacion.jLabelYDown(-30,0, 10, 5, lblFlechaArriba);
+        
+        
+        
+    }//GEN-LAST:event_lblFlechaAbajoMouseClicked
+
+    private void lblFlechaArribaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblFlechaArribaMouseClicked
+        
+        AnimationClass animacion = new AnimationClass();
+        
+        
+        //******Filtrar******
+        //Sirve para que el campo de txtFiltrar se visualice.
+
+        //El primer parametro es la posición actual del elemento gráfico
+        //La segunda es la posición que quiera mover el elemento grafico.
+        animacion.jLabelYUp(20,-30, 10, 5, lblTituloMedicamento);
+        animacion.jLabelYUp(0,-30, 10, 5, lblFlechaArriba);
+        animacion.jLabelYDown(-30,0, 10, 5, lblFlechaAbajo);
+        
+    }//GEN-LAST:event_lblFlechaArribaMouseClicked
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -296,7 +405,11 @@ public class Medicamento extends javax.swing.JInternalFrame {
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JSeparator jSeparator1;
+    private javax.swing.JSeparator jSeparator2;
+    private javax.swing.JSeparator jSeparator4;
+    private javax.swing.JSeparator jSeparator5;
+    private javax.swing.JSeparator jSeparator6;
+    private javax.swing.JSeparator jSeparator7;
     private javax.swing.JTable jTable1;
     private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField jTextField2;
@@ -306,10 +419,16 @@ public class Medicamento extends javax.swing.JInternalFrame {
     private javax.swing.JLabel lblCodigo;
     private javax.swing.JLabel lblCodigo1;
     private javax.swing.JLabel lblCodigo2;
+    private javax.swing.JLabel lblDato;
+    private javax.swing.JLabel lblFiltrar;
+    private javax.swing.JLabel lblFlechaAbajo;
+    private javax.swing.JLabel lblFlechaArriba;
     private javax.swing.JLabel lblGuardar;
     private javax.swing.JLabel lblGuardar1;
     private javax.swing.JLabel lblGuardar2;
     private javax.swing.JLabel lblGuardar3;
     private javax.swing.JLabel lblGuardar4;
+    private javax.swing.JLabel lblTituloMedicamento;
+    private javax.swing.JTextField txtFiltrar;
     // End of variables declaration//GEN-END:variables
 }

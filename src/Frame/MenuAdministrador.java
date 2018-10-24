@@ -80,6 +80,11 @@ public class MenuAdministrador extends javax.swing.JInternalFrame {
         btnProveedor.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Proveedores2.png"))); // NOI18N
         btnProveedor.setRolloverSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Proveedores2.png"))); // NOI18N
         btnProveedor.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Proveedores.png"))); // NOI18N
+        btnProveedor.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnProveedorActionPerformed(evt);
+            }
+        });
         jpMenuAdministrador.add(btnProveedor, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 20, -1, -1));
 
         btnEmpleado.setFont(new java.awt.Font("Decker", 1, 14)); // NOI18N
@@ -93,6 +98,11 @@ public class MenuAdministrador extends javax.swing.JInternalFrame {
         btnEmpleado.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Empleados2.png"))); // NOI18N
         btnEmpleado.setRolloverSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Empleados2.png"))); // NOI18N
         btnEmpleado.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Empleados.png"))); // NOI18N
+        btnEmpleado.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnEmpleadoActionPerformed(evt);
+            }
+        });
         jpMenuAdministrador.add(btnEmpleado, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 20, -1, -1));
 
         btnPerfil.setFont(new java.awt.Font("Decker", 1, 14)); // NOI18N
@@ -106,6 +116,11 @@ public class MenuAdministrador extends javax.swing.JInternalFrame {
         btnPerfil.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Perfil2.png"))); // NOI18N
         btnPerfil.setRolloverSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Perfil2.png"))); // NOI18N
         btnPerfil.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Perfil.png"))); // NOI18N
+        btnPerfil.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnPerfilActionPerformed(evt);
+            }
+        });
         jpMenuAdministrador.add(btnPerfil, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 20, -1, -1));
 
         getContentPane().add(jpMenuAdministrador, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 760, 80));
@@ -133,6 +148,62 @@ public class MenuAdministrador extends javax.swing.JInternalFrame {
         
        
     }//GEN-LAST:event_btnMedicamentoActionPerformed
+
+    private void btnProveedorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnProveedorActionPerformed
+        
+        //Se realiza una instanciación sobre la clase Proveedor para obtener todos los métodos, atributos.
+
+        Proveedor mostrarVentanaProveedor = new Proveedor();
+        //Se ancla el JinternalFrame que anteriormente se creó (se llama Proveedor)
+        this.jdkEscritorioAdmin.add(mostrarVentanaProveedor);
+        /* ***Se emplea un try para ejecutar satisfactoriamente el maximizar en el area de Desktop Pane(Componente de Java Swing).
+        ***Si sucede alguna eventualidad(error) entraría al catch y posteriormente dirá el error presentado */
+        try {
+            mostrarVentanaProveedor.setMaximum(true);
+        } catch (PropertyVetoException ex) {
+            Logger.getLogger(VentanaPrincipal.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        //Muestra la ventana dentro de la aplicación.
+        mostrarVentanaProveedor.setVisible(true);
+        
+        
+        
+        
+    }//GEN-LAST:event_btnProveedorActionPerformed
+
+    private void btnEmpleadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEmpleadoActionPerformed
+        //Se realiza una instanciación sobre la clase RegistroVendedore para obtener todos los métodos.
+
+        Empleado mostrarVentanaEmpleado = new Empleado();
+        //Se ancla el JinternalFrame que anteriormente se creó (se llama RegistroProveedore)
+        this.jdkEscritorioAdmin.add(mostrarVentanaEmpleado);
+        /* ***Se emplea un try para ejecutar satisfactoriamente el maximizar en el area de Desktop Pane(Componente de Java Swing).
+        ***Si sucede alguna eventualidad(error) entraría al catch y posteriormente dirá el error presentado */
+        try {
+            mostrarVentanaEmpleado.setMaximum(true);
+        } catch (PropertyVetoException ex) {
+            Logger.getLogger(VentanaPrincipal.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        //Muestra la ventana dentro de la aplicación.
+        mostrarVentanaEmpleado.setVisible(true);
+    }//GEN-LAST:event_btnEmpleadoActionPerformed
+
+    private void btnPerfilActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPerfilActionPerformed
+        //Se realiza una instanciación sobre la clase RegistroVendedore para obtener todos los métodos.
+
+        Perfil mostrarVentanaPerfil = new Perfil();
+        //Se ancla el JinternalFrame que anteriormente se creó (se llama RegistroProveedore)
+        this.jdkEscritorioAdmin.add(mostrarVentanaPerfil);
+        /* ***Se emplea un try para ejecutar satisfactoriamente el maximizar en el area de Desktop Pane(Componente de Java Swing).
+        ***Si sucede alguna eventualidad(error) entraría al catch y posteriormente dirá el error presentado */
+        try {
+            mostrarVentanaPerfil.setMaximum(true);
+        } catch (PropertyVetoException ex) {
+            Logger.getLogger(VentanaPrincipal.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        //Muestra la ventana dentro de la aplicación.
+        mostrarVentanaPerfil.setVisible(true);
+    }//GEN-LAST:event_btnPerfilActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
