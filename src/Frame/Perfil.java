@@ -68,6 +68,8 @@ public class Perfil extends javax.swing.JInternalFrame {
         jButton1 = new javax.swing.JButton();
 
         setBackground(new java.awt.Color(255, 255, 255));
+        setClosable(true);
+        setIconifiable(true);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         lblDato.setFont(new java.awt.Font("Decker", 1, 14)); // NOI18N

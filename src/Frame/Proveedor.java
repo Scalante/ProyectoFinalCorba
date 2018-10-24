@@ -62,6 +62,9 @@ public class Proveedor extends javax.swing.JInternalFrame {
         lblDireccion = new javax.swing.JLabel();
         txtDireccion = new javax.swing.JTextField();
         jLabel9 = new javax.swing.JLabel();
+        lblFlechaAbajo = new javax.swing.JLabel();
+        lblTituloProveedor = new javax.swing.JLabel();
+        lblFlechaArriba = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(255, 255, 255));
         setClosable(true);
@@ -248,6 +251,27 @@ public class Proveedor extends javax.swing.JInternalFrame {
         jLabel9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Capturkla.png"))); // NOI18N
         getContentPane().add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 190, 120, 4));
 
+        lblFlechaAbajo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/drop-down-arrow.png"))); // NOI18N
+        lblFlechaAbajo.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        lblFlechaAbajo.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                lblFlechaAbajoMouseClicked(evt);
+            }
+        });
+        getContentPane().add(lblFlechaAbajo, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 0, 40, 20));
+
+        lblTituloProveedor.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Proveedores.gif"))); // NOI18N
+        getContentPane().add(lblTituloProveedor, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, -30, -1, -1));
+
+        lblFlechaArriba.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/caret-arrow-up.png"))); // NOI18N
+        lblFlechaArriba.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        lblFlechaArriba.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                lblFlechaArribaMouseClicked(evt);
+            }
+        });
+        getContentPane().add(lblFlechaArriba, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, -30, -1, -1));
+
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
@@ -266,6 +290,40 @@ public class Proveedor extends javax.swing.JInternalFrame {
         animacion.jTextFieldXLeft(760,650, 10, 5, txtFiltrar);
         //animacion.jTextFieldXRight(650,760, 10, 5, txtFiltrar);
     }//GEN-LAST:event_btnBuscarActionPerformed
+
+    private void lblFlechaAbajoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblFlechaAbajoMouseClicked
+
+        //Programación para que el icono del filtrar, hacer un efecto de aparecer.
+        //Instanciación de la libreria AnimatonClass.
+
+        AnimationClass animacion = new AnimationClass();
+
+        //******Filtrar******
+        //Sirve para que el campo de txtFiltrar se visualice.
+
+        //El primer parametro es la posición actual del elemento gráfico
+        //La segunda es la posición que quiera mover el elemento grafico.
+        animacion.jLabelYDown(-30,20, 10, 5, lblTituloProveedor);
+        //animacion.jTextFieldXRight(650,760, 10, 5, txtFiltrar);
+        animacion.jLabelYUp(0,-30, 10, 5, lblFlechaAbajo);
+        animacion.jLabelYDown(-30,0, 10, 5, lblFlechaArriba);
+
+    }//GEN-LAST:event_lblFlechaAbajoMouseClicked
+
+    private void lblFlechaArribaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblFlechaArribaMouseClicked
+
+        AnimationClass animacion = new AnimationClass();
+
+        //******Filtrar******
+        //Sirve para que el campo de txtFiltrar se visualice.
+
+        //El primer parametro es la posición actual del elemento gráfico
+        //La segunda es la posición que quiera mover el elemento grafico.
+        animacion.jLabelYUp(20,-30, 10, 5, lblTituloProveedor);
+        animacion.jLabelYUp(0,-30, 10, 5, lblFlechaArriba);
+        animacion.jLabelYDown(-30,0, 10, 5, lblFlechaAbajo);
+
+    }//GEN-LAST:event_lblFlechaArribaMouseClicked
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -294,10 +352,13 @@ public class Proveedor extends javax.swing.JInternalFrame {
     private javax.swing.JLabel lblDireccion;
     private javax.swing.JLabel lblEliminar;
     private javax.swing.JLabel lblFiltrar;
+    private javax.swing.JLabel lblFlechaAbajo;
+    private javax.swing.JLabel lblFlechaArriba;
     private javax.swing.JLabel lblGuardar;
     private javax.swing.JLabel lblLimpiar;
     private javax.swing.JLabel lblNombreLaboratorio;
     private javax.swing.JLabel lblTelefono;
+    private javax.swing.JLabel lblTituloProveedor;
     private javax.swing.JTextField txtDireccion;
     private javax.swing.JTextField txtFiltrar;
     private javax.swing.JTextField txtNombreLaboratorio;

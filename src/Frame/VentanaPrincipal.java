@@ -52,8 +52,8 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         lblAyuda = new javax.swing.JLabel();
         btnMenu = new javax.swing.JButton();
         jpBarraSuperior = new javax.swing.JPanel();
-        lblMinimizar = new javax.swing.JLabel();
-        lblSalir = new javax.swing.JLabel();
+        btnSalir = new javax.swing.JButton();
+        btnMinimizar = new javax.swing.JButton();
         jdkEscritorio = new javax.swing.JDesktopPane();
         lblImagenFondo = new javax.swing.JLabel();
 
@@ -172,23 +172,34 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         });
         jpBarraSuperior.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        lblMinimizar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/icons8_Expand_Arrow_32px.png"))); // NOI18N
-        lblMinimizar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        lblMinimizar.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                lblMinimizarMouseClicked(evt);
+        btnSalir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/icons8_Multiply_32px.png"))); // NOI18N
+        btnSalir.setBorder(null);
+        btnSalir.setContentAreaFilled(false);
+        btnSalir.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnSalir.setDefaultCapable(false);
+        btnSalir.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/cross-mark-on-a-black-circle-background.png"))); // NOI18N
+        btnSalir.setRolloverSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/cross-mark-on-a-black-circle-background.png"))); // NOI18N
+        btnSalir.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/icons8_Multiply_32px.png"))); // NOI18N
+        btnSalir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSalirActionPerformed(evt);
             }
         });
-        jpBarraSuperior.add(lblMinimizar, new org.netbeans.lib.awtextra.AbsoluteConstraints(670, 10, -1, -1));
+        jpBarraSuperior.add(btnSalir, new org.netbeans.lib.awtextra.AbsoluteConstraints(720, 10, -1, -1));
 
-        lblSalir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/icons8_Multiply_32px.png"))); // NOI18N
-        lblSalir.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        lblSalir.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                lblSalirMouseClicked(evt);
+        btnMinimizar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/icons8_Expand_Arrow_32px.png"))); // NOI18N
+        btnMinimizar.setBorder(null);
+        btnMinimizar.setBorderPainted(false);
+        btnMinimizar.setContentAreaFilled(false);
+        btnMinimizar.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/minimize.png"))); // NOI18N
+        btnMinimizar.setRolloverSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/minimize.png"))); // NOI18N
+        btnMinimizar.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/icons8_Expand_Arrow_32px.png"))); // NOI18N
+        btnMinimizar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnMinimizarActionPerformed(evt);
             }
         });
-        jpBarraSuperior.add(lblSalir, new org.netbeans.lib.awtextra.AbsoluteConstraints(710, 10, -1, -1));
+        jpBarraSuperior.add(btnMinimizar, new org.netbeans.lib.awtextra.AbsoluteConstraints(680, 10, -1, -1));
 
         getContentPane().add(jpBarraSuperior, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 0, 760, 50));
 
@@ -219,29 +230,6 @@ public class VentanaPrincipal extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void lblMinimizarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblMinimizarMouseClicked
-        
-        this.setState(VentanaPrincipal.ICONIFIED);
-        
-        
-        
-    }//GEN-LAST:event_lblMinimizarMouseClicked
-
-    private void lblSalirMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblSalirMouseClicked
-        
-        //Programación para el boton salir
-        
-        int dialog = JOptionPane.YES_NO_OPTION;
-        //Almacena la opción que el usuario escoja (1 -> no) (0 -> Si).
-        int result = JOptionPane.showConfirmDialog(null, "¿Desea salir?" , "Exit" , dialog);
-        
-        //Si el usuario presiona Si automaticamente se cierra la ventana.
-        if (result == 0) {
-            System.exit(0);
-        }
-        
-    }//GEN-LAST:event_lblSalirMouseClicked
 
     private void jpIngresoMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jpIngresoMousePressed
 
@@ -320,6 +308,24 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         animacionIcono.jLabelXLeft(10, -35, 10, 5, lblSalirr);
     }//GEN-LAST:event_btnMenuActionPerformed
 
+    private void btnSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalirActionPerformed
+        //Programación para el boton salir
+        
+        int dialog = JOptionPane.YES_NO_OPTION;
+        //Almacena la opción que el usuario escoja (1 -> no) (0 -> Si).
+        int result = JOptionPane.showConfirmDialog(null, "¿Desea salir?" , "Exit" , dialog);
+        
+        //Si el usuario presiona Si automaticamente se cierra la ventana.
+        if (result == 0) {
+            System.exit(0);
+        }
+    }//GEN-LAST:event_btnSalirActionPerformed
+
+    private void btnMinimizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMinimizarActionPerformed
+        //Permite minimizar la ventana.
+        this.setState(VentanaPrincipal.ICONIFIED);
+    }//GEN-LAST:event_btnMinimizarActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -360,6 +366,8 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnIniciarSesion;
     private javax.swing.JButton btnMenu;
+    private javax.swing.JButton btnMinimizar;
+    private javax.swing.JButton btnSalir;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -375,8 +383,6 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     private javax.swing.JLabel lblAyuda;
     private javax.swing.JLabel lblDesarollador;
     private javax.swing.JLabel lblImagenFondo;
-    private javax.swing.JLabel lblMinimizar;
-    private javax.swing.JLabel lblSalir;
     private javax.swing.JLabel lblSalirr;
     // End of variables declaration//GEN-END:variables
 }

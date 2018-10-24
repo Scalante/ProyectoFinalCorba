@@ -70,8 +70,13 @@ public class Empleado extends javax.swing.JInternalFrame {
         jButton1 = new javax.swing.JButton();
         lblTelefono2 = new javax.swing.JLabel();
         cmbCiudad1 = new javax.swing.JComboBox<>();
+        lblFlechaAbajo = new javax.swing.JLabel();
+        lblTituloEmpleado = new javax.swing.JLabel();
+        lblFlechaArriba = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(255, 255, 255));
+        setClosable(true);
+        setIconifiable(true);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         btnGuardar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/IconoGuardar.png"))); // NOI18N
@@ -211,7 +216,7 @@ public class Empleado extends javax.swing.JInternalFrame {
         getContentPane().add(cmbDepartamento, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 120, 100, -1));
 
         cmbCiudad.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        getContentPane().add(cmbCiudad, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 350, 90, -1));
+        getContentPane().add(cmbCiudad, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 340, 90, -1));
 
         lblCiudad.setFont(new java.awt.Font("Decker", 1, 14)); // NOI18N
         lblCiudad.setForeground(new java.awt.Color(0, 0, 0));
@@ -222,7 +227,7 @@ public class Empleado extends javax.swing.JInternalFrame {
         txtTelefono.setFont(new java.awt.Font("Decker", 1, 14)); // NOI18N
         txtTelefono.setForeground(new java.awt.Color(51, 51, 255));
         txtTelefono.setBorder(null);
-        getContentPane().add(txtTelefono, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 260, 120, 20));
+        getContentPane().add(txtTelefono, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 250, 120, 20));
 
         lblNombreLaboratorio.setFont(new java.awt.Font("Decker", 1, 14)); // NOI18N
         lblNombreLaboratorio.setForeground(new java.awt.Color(0, 0, 0));
@@ -232,27 +237,27 @@ public class Empleado extends javax.swing.JInternalFrame {
         lblTelefono.setFont(new java.awt.Font("Decker", 1, 14)); // NOI18N
         lblTelefono.setForeground(new java.awt.Color(0, 0, 0));
         lblTelefono.setText("Correo:");
-        getContentPane().add(lblTelefono, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 260, 60, 20));
+        getContentPane().add(lblTelefono, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 250, 60, 20));
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Capturkla.png"))); // NOI18N
         getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 100, 120, 3));
 
         jLabel8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Capturkla.png"))); // NOI18N
-        getContentPane().add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 280, 120, 4));
+        getContentPane().add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 270, 120, 4));
 
         lblDireccion.setFont(new java.awt.Font("Decker", 1, 14)); // NOI18N
         lblDireccion.setForeground(new java.awt.Color(0, 0, 0));
         lblDireccion.setText("Dirección:");
-        getContentPane().add(lblDireccion, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 210, -1, 30));
+        getContentPane().add(lblDireccion, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 200, -1, 30));
 
         txtDireccion.setBackground(new java.awt.Color(214, 217, 223));
         txtDireccion.setFont(new java.awt.Font("Decker", 1, 14)); // NOI18N
         txtDireccion.setForeground(new java.awt.Color(51, 51, 255));
         txtDireccion.setBorder(null);
-        getContentPane().add(txtDireccion, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 210, 120, 20));
+        getContentPane().add(txtDireccion, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 200, 120, 20));
 
         jLabel9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Capturkla.png"))); // NOI18N
-        getContentPane().add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 230, 120, 4));
+        getContentPane().add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 220, 120, 4));
 
         txtTelefono1.setBackground(new java.awt.Color(214, 217, 223));
         txtTelefono1.setFont(new java.awt.Font("Decker", 1, 14)); // NOI18N
@@ -263,15 +268,15 @@ public class Empleado extends javax.swing.JInternalFrame {
                 txtTelefono1ActionPerformed(evt);
             }
         });
-        getContentPane().add(txtTelefono1, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 310, 120, 20));
+        getContentPane().add(txtTelefono1, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 300, 120, 20));
 
         lblTelefono1.setFont(new java.awt.Font("Decker", 1, 14)); // NOI18N
         lblTelefono1.setForeground(new java.awt.Color(0, 0, 0));
         lblTelefono1.setText("Estado:");
-        getContentPane().add(lblTelefono1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 350, -1, 20));
+        getContentPane().add(lblTelefono1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 340, -1, 30));
 
         jLabel10.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Capturkla.png"))); // NOI18N
-        getContentPane().add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 330, 120, 4));
+        getContentPane().add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 320, 120, 4));
 
         txtNombreLaboratorio1.setBackground(new java.awt.Color(214, 217, 223));
         txtNombreLaboratorio1.setFont(new java.awt.Font("Decker", 1, 14)); // NOI18N
@@ -301,10 +306,31 @@ public class Empleado extends javax.swing.JInternalFrame {
         lblTelefono2.setFont(new java.awt.Font("Decker", 1, 14)); // NOI18N
         lblTelefono2.setForeground(new java.awt.Color(0, 0, 0));
         lblTelefono2.setText("Telefono:");
-        getContentPane().add(lblTelefono2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 310, -1, 20));
+        getContentPane().add(lblTelefono2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 300, -1, 20));
 
         cmbCiudad1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         getContentPane().add(cmbCiudad1, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 160, 90, -1));
+
+        lblFlechaAbajo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/drop-down-arrow.png"))); // NOI18N
+        lblFlechaAbajo.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        lblFlechaAbajo.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                lblFlechaAbajoMouseClicked(evt);
+            }
+        });
+        getContentPane().add(lblFlechaAbajo, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 0, 40, 20));
+
+        lblTituloEmpleado.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Empleados.gif"))); // NOI18N
+        getContentPane().add(lblTituloEmpleado, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, -30, -1, -1));
+
+        lblFlechaArriba.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/caret-arrow-up.png"))); // NOI18N
+        lblFlechaArriba.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        lblFlechaArriba.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                lblFlechaArribaMouseClicked(evt);
+            }
+        });
+        getContentPane().add(lblFlechaArriba, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, -30, -1, -1));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -328,6 +354,38 @@ public class Empleado extends javax.swing.JInternalFrame {
     private void txtTelefono1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtTelefono1ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtTelefono1ActionPerformed
+
+    private void lblFlechaAbajoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblFlechaAbajoMouseClicked
+
+        //Programación para que el icono del filtrar, hacer un efecto de aparecer.
+        //Instanciación de la libreria AnimatonClass.
+
+        AnimationClass animacion = new AnimationClass();
+
+        //******Filtrar******
+        //Sirve para que el campo de txtFiltrar se visualice.
+
+        //El primer parametro es la posición actual del elemento gráfico
+        //La segunda es la posición que quiera mover el elemento grafico.
+        animacion.jLabelYDown(-30,20, 10, 5, lblTituloEmpleado);
+        //animacion.jTextFieldXRight(650,760, 10, 5, txtFiltrar);
+        animacion.jLabelYUp(0,-30, 10, 5, lblFlechaAbajo);
+        animacion.jLabelYDown(-30,0, 10, 5, lblFlechaArriba);
+    }//GEN-LAST:event_lblFlechaAbajoMouseClicked
+
+    private void lblFlechaArribaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblFlechaArribaMouseClicked
+
+        AnimationClass animacion = new AnimationClass();
+
+        //******Filtrar******
+        //Sirve para que el campo de txtFiltrar se visualice.
+
+        //El primer parametro es la posición actual del elemento gráfico
+        //La segunda es la posición que quiera mover el elemento grafico.
+        animacion.jLabelYUp(20,-30, 10, 5, lblTituloEmpleado);
+        animacion.jLabelYUp(0,-30, 10, 5, lblFlechaArriba);
+        animacion.jLabelYDown(-30,0, 10, 5, lblFlechaAbajo);
+    }//GEN-LAST:event_lblFlechaArribaMouseClicked
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -360,6 +418,8 @@ public class Empleado extends javax.swing.JInternalFrame {
     private javax.swing.JLabel lblDireccion;
     private javax.swing.JLabel lblEliminar;
     private javax.swing.JLabel lblFiltrar;
+    private javax.swing.JLabel lblFlechaAbajo;
+    private javax.swing.JLabel lblFlechaArriba;
     private javax.swing.JLabel lblGuardar;
     private javax.swing.JLabel lblLimpiar;
     private javax.swing.JLabel lblNombreLaboratorio;
@@ -367,6 +427,7 @@ public class Empleado extends javax.swing.JInternalFrame {
     private javax.swing.JLabel lblTelefono;
     private javax.swing.JLabel lblTelefono1;
     private javax.swing.JLabel lblTelefono2;
+    private javax.swing.JLabel lblTituloEmpleado;
     private javax.swing.JTextField txtDireccion;
     private javax.swing.JTextField txtFiltrar;
     private javax.swing.JTextField txtNombreLaboratorio;
