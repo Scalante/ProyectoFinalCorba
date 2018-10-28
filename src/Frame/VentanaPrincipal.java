@@ -18,6 +18,10 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     private int posicioX;
     private int posicionY;
     
+    //Se realiza una instanciación para que los objetos obtengan todos los metodos de esa libreria(ImageIcon)
+    ImageIcon imagenAviso =  new ImageIcon(getClass().getResource("/Imagenes/WarningAviso.png"));
+    
+    
     public VentanaPrincipal() {
         initComponents();
         
@@ -27,6 +31,8 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         setIconImage(new ImageIcon(getClass().getResource("/Imagenes/IconoFarmacia.png")).getImage()); 
     }
 
+    
+   
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -39,10 +45,10 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         jpIngreso = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
+        txtUser = new javax.swing.JTextField();
         jSeparator1 = new javax.swing.JSeparator();
         jLabel4 = new javax.swing.JLabel();
-        jPasswordField1 = new javax.swing.JPasswordField();
+        txtPassword = new javax.swing.JPasswordField();
         jSeparator2 = new javax.swing.JSeparator();
         jLabel2 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
@@ -87,11 +93,11 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         jLabel3.setText("USER:");
         jpIngreso.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 250, -1, -1));
 
-        jTextField1.setBackground(new java.awt.Color(255, 255, 255));
-        jTextField1.setFont(new java.awt.Font("Decker", 0, 14)); // NOI18N
-        jTextField1.setForeground(new java.awt.Color(153, 153, 153));
-        jTextField1.setBorder(null);
-        jpIngreso.add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 280, 160, 30));
+        txtUser.setBackground(new java.awt.Color(255, 255, 255));
+        txtUser.setFont(new java.awt.Font("Decker", 0, 14)); // NOI18N
+        txtUser.setForeground(new java.awt.Color(153, 153, 153));
+        txtUser.setBorder(null);
+        jpIngreso.add(txtUser, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 280, 160, 30));
 
         jSeparator1.setBackground(new java.awt.Color(0, 0, 0));
         jSeparator1.setForeground(new java.awt.Color(0, 0, 0));
@@ -100,11 +106,11 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/ImagenUsuario.png"))); // NOI18N
         jpIngreso.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 90, 110, 110));
 
-        jPasswordField1.setBackground(new java.awt.Color(255, 255, 255));
-        jPasswordField1.setFont(new java.awt.Font("Decker", 0, 14)); // NOI18N
-        jPasswordField1.setForeground(new java.awt.Color(153, 153, 153));
-        jPasswordField1.setBorder(null);
-        jpIngreso.add(jPasswordField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 390, 157, 30));
+        txtPassword.setBackground(new java.awt.Color(255, 255, 255));
+        txtPassword.setFont(new java.awt.Font("Decker", 0, 14)); // NOI18N
+        txtPassword.setForeground(new java.awt.Color(153, 153, 153));
+        txtPassword.setBorder(null);
+        jpIngreso.add(txtPassword, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 390, 157, 30));
 
         jSeparator2.setBackground(new java.awt.Color(0, 0, 0));
         jSeparator2.setForeground(new java.awt.Color(0, 0, 0));
@@ -262,6 +268,28 @@ public class VentanaPrincipal extends javax.swing.JFrame {
 
     private void btnIniciarSesionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIniciarSesionActionPerformed
         
+        //Validación de cada una de las cajas de Texto.
+        
+        //Validar el campo de Identificacion ya sea nit o cédula
+        if(txtUser.getText().equals("")){
+            JOptionPane.showMessageDialog(null, "Por favor, Digita tú usuario" , "¡Aviso!" , JOptionPane.INFORMATION_MESSAGE , imagenAviso);
+            txtUser.requestFocus();
+            return;
+        }
+
+        //Validar el campo de contraseña para que cumpla con los requerimientos establecidos.
+        if (txtPassword.getPassword().length == 0) {
+            JOptionPane.showMessageDialog(null, "Por favor, llena el campo de Contraseña" , "¡Aviso!" , JOptionPane.INFORMATION_MESSAGE , imagenAviso);
+            txtPassword.requestFocus();
+            return;
+        }
+        
+        
+        
+        
+        
+        
+        
         //Se realiza una instanciación sobre la clase RegistroVendedore para obtener todos los métodos.
         MenuAdministrador mostrarVentanaAdministrador = new MenuAdministrador();
         //Se ancla el JinternalFrame que anteriormente se creó (se llama RegistroProveedore)
@@ -373,10 +401,8 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
-    private javax.swing.JPasswordField jPasswordField1;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSeparator jSeparator2;
-    private javax.swing.JTextField jTextField1;
     private javax.swing.JDesktopPane jdkEscritorio;
     private javax.swing.JPanel jpBarraSuperior;
     private javax.swing.JPanel jpIngreso;
@@ -384,5 +410,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     private javax.swing.JLabel lblDesarollador;
     private javax.swing.JLabel lblImagenFondo;
     private javax.swing.JLabel lblSalirr;
+    public javax.swing.JPasswordField txtPassword;
+    public javax.swing.JTextField txtUser;
     // End of variables declaration//GEN-END:variables
 }

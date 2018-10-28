@@ -1,0 +1,16 @@
+module Credenciales {
+    interface Credencial{
+        
+        boolean insertarCredencial(in long codigo, in wstring user, in wstring password, in wchar estado);
+        
+        boolean actualizarCredencial(in long codigo, in wstring user, in wstring password, in wchar estado);
+        
+        boolean eliminarCredencial(in long codigo);
+        
+        wstring consultarCredencial(in long codigo);
+       
+        oneway void shutdown();
+        
+    };
+
+};

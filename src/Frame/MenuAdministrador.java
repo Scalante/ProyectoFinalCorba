@@ -38,6 +38,7 @@ public class MenuAdministrador extends javax.swing.JInternalFrame {
         btnProveedor = new javax.swing.JButton();
         btnEmpleado = new javax.swing.JButton();
         btnPerfil = new javax.swing.JButton();
+        btnCredencial = new javax.swing.JButton();
         jdkEscritorioAdmin = new javax.swing.JDesktopPane();
 
         setClosable(true);
@@ -121,7 +122,25 @@ public class MenuAdministrador extends javax.swing.JInternalFrame {
                 btnPerfilActionPerformed(evt);
             }
         });
-        jpMenuAdministrador.add(btnPerfil, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 20, -1, -1));
+        jpMenuAdministrador.add(btnPerfil, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 20, -1, -1));
+
+        btnCredencial.setFont(new java.awt.Font("Decker", 1, 14)); // NOI18N
+        btnCredencial.setForeground(new java.awt.Color(0, 0, 0));
+        btnCredencial.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Credenciales.png"))); // NOI18N
+        btnCredencial.setText("Credenciales");
+        btnCredencial.setBorder(null);
+        btnCredencial.setBorderPainted(false);
+        btnCredencial.setContentAreaFilled(false);
+        btnCredencial.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnCredencial.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Credenciales2.png"))); // NOI18N
+        btnCredencial.setRolloverSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Credenciales2.png"))); // NOI18N
+        btnCredencial.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Credenciales.png"))); // NOI18N
+        btnCredencial.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCredencialActionPerformed(evt);
+            }
+        });
+        jpMenuAdministrador.add(btnCredencial, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 20, -1, -1));
 
         getContentPane().add(jpMenuAdministrador, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 760, 80));
         getContentPane().add(jdkEscritorioAdmin, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 80, 760, 430));
@@ -205,8 +224,26 @@ public class MenuAdministrador extends javax.swing.JInternalFrame {
         mostrarVentanaPerfil.setVisible(true);
     }//GEN-LAST:event_btnPerfilActionPerformed
 
+    private void btnCredencialActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCredencialActionPerformed
+        //Se realiza una instanciación sobre la clase RegistroVendedore para obtener todos los métodos.
+
+        Credencial mostrarVentanaCredencial = new Credencial();
+        //Se ancla el JinternalFrame que anteriormente se creó (se llama RegistroProveedore)
+        this.jdkEscritorioAdmin.add(mostrarVentanaCredencial);
+        /* ***Se emplea un try para ejecutar satisfactoriamente el maximizar en el area de Desktop Pane(Componente de Java Swing).
+        ***Si sucede alguna eventualidad(error) entraría al catch y posteriormente dirá el error presentado */
+        try {
+            mostrarVentanaCredencial.setMaximum(true);
+        } catch (PropertyVetoException ex) {
+            Logger.getLogger(VentanaPrincipal.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        //Muestra la ventana dentro de la aplicación.
+        mostrarVentanaCredencial.setVisible(true);
+    }//GEN-LAST:event_btnCredencialActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnCredencial;
     private javax.swing.JButton btnEmpleado;
     private javax.swing.JButton btnMedicamento;
     private javax.swing.JButton btnPerfil;
