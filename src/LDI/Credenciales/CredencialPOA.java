@@ -1,4 +1,4 @@
-package Credenciales;
+package LDI.Credenciales;
 
 
 /**
@@ -9,7 +9,7 @@ package Credenciales;
 */
 
 public abstract class CredencialPOA extends org.omg.PortableServer.Servant
- implements Credenciales.CredencialOperations, org.omg.CORBA.portable.InvokeHandler
+ implements LDI.Credenciales.CredencialOperations, org.omg.CORBA.portable.InvokeHandler
 {
 
   // Constructors

@@ -1,4 +1,4 @@
-package Credenciales;
+package LDI.Credenciales;
 
 
 /**

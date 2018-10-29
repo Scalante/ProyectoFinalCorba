@@ -1,4 +1,4 @@
-package Credenciales;
+package LDI.Credenciales;
 
 
 /**
@@ -8,7 +8,7 @@ package Credenciales;
 * domingo 28 de octubre de 2018 17H54' COT
 */
 
-public class _CredencialStub extends org.omg.CORBA.portable.ObjectImpl implements Credenciales.Credencial
+public class _CredencialStub extends org.omg.CORBA.portable.ObjectImpl implements LDI.Credenciales.Credencial
 {
 
   public boolean insertarCredencial (int codigo, String user, String password, char estado)

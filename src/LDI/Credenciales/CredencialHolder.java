@@ -1,4 +1,4 @@
-package Credenciales;
+package LDI.Credenciales;
 
 /**
 * Credenciales/CredencialHolder.java .
@@ -9,30 +9,30 @@ package Credenciales;
 
 public final class CredencialHolder implements org.omg.CORBA.portable.Streamable
 {
-  public Credenciales.Credencial value = null;
+  public LDI.Credenciales.Credencial value = null;
 
   public CredencialHolder ()
   {
   }
 
-  public CredencialHolder (Credenciales.Credencial initialValue)
+  public CredencialHolder (LDI.Credenciales.Credencial initialValue)
   {
     value = initialValue;
   }
 
   public void _read (org.omg.CORBA.portable.InputStream i)
   {
-    value = Credenciales.CredencialHelper.read (i);
+    value = LDI.Credenciales.CredencialHelper.read (i);
   }
 
   public void _write (org.omg.CORBA.portable.OutputStream o)
   {
-    Credenciales.CredencialHelper.write (o, value);
+    LDI.Credenciales.CredencialHelper.write (o, value);
   }
 
   public org.omg.CORBA.TypeCode _type ()
   {
-    return Credenciales.CredencialHelper.type ();
+    return LDI.Credenciales.CredencialHelper.type ();
   }
 
 }

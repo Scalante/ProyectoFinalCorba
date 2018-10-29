@@ -1,6 +1,7 @@
 package Frame;
 
 import AppPackage.AnimationClass;
+import LDI.TablaCredencial;
 import java.beans.PropertyVetoException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -268,7 +269,12 @@ public class VentanaPrincipal extends javax.swing.JFrame {
 
     private void btnIniciarSesionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIniciarSesionActionPerformed
         
-        //Validación de cada una de las cajas de Texto.
+        //Instanciación de la clase TablaCredencial.
+        
+        TablaCredencial objCredencial = new  TablaCredencial();
+        
+        
+        //***Validación de cada una de las cajas de Texto***.
         
         //Validar el campo de Identificacion ya sea nit o cédula
         if(txtUser.getText().equals("")){
@@ -284,27 +290,48 @@ public class VentanaPrincipal extends javax.swing.JFrame {
             return;
         }
         
-        
-        
-        
-        
-        
-        
-        //Se realiza una instanciación sobre la clase RegistroVendedore para obtener todos los métodos.
-        MenuAdministrador mostrarVentanaAdministrador = new MenuAdministrador();
-        //Se ancla el JinternalFrame que anteriormente se creó (se llama RegistroProveedore)
-        this.jdkEscritorio.add(mostrarVentanaAdministrador);
-        /* ***Se emplea un try para ejecutar satisfactoriamente el maximizar en el area de Desktop Pane(Componente de Java Swing).
-        ***Si sucede alguna eventualidad(error) entraría al catch y posteriormente dirá el error presentado */
         try {
-            mostrarVentanaAdministrador.setMaximum(true);
-        } catch (PropertyVetoException ex) {
-            Logger.getLogger(VentanaPrincipal.class.getName()).log(Level.SEVERE, null, ex);
+            
+            int codigo =  Integer.parseInt(txtUser.getText());
+            String password = String.valueOf(txtPassword.getPassword());
+            
+            //Se envía la sentencia Sql si el codigo y la contraseña son correctos mostrará la ventana.
+            if (objCredencial.verificar("SELECT * FROM credenciales WHERE codigo =" + codigo + "  AND password=" + password + " ") == 1) {
+
+                txtUser.setText("");
+                txtPassword.setText("");
+                //Se realiza una instanciación sobre la clase RegistroVendedore para obtener todos los métodos.
+                MenuAdministrador mostrarVentanaAdministrador = new MenuAdministrador();
+                //Se ancla el JinternalFrame que anteriormente se creó (se llama RegistroProveedore)
+                this.jdkEscritorio.add(mostrarVentanaAdministrador);
+                /* ***Se emplea un try para ejecutar satisfactoriamente el maximizar en el area de Desktop Pane(Componente de Java Swing).
+                ***Si sucede alguna eventualidad(error) entraría al catch y posteriormente dirá el error presentado */
+                try {
+                    mostrarVentanaAdministrador.setMaximum(true);
+                } catch (PropertyVetoException ex) {
+                    Logger.getLogger(VentanaPrincipal.class.getName()).log(Level.SEVERE, null, ex);
+                }
+                //Muestra la ventana dentro de la aplicación.
+                mostrarVentanaAdministrador.setVisible(true);
+            }
+            else {
+                JOptionPane.showMessageDialog(null, "¡Lo sentimos! Tú usuario y/o contraseña son incorrectos, ¡intentalo de nuevo!" , "¡Mensaje de Error al sistema!" , JOptionPane.INFORMATION_MESSAGE , imagenAviso); 
+                txtUser.setText("");
+                txtPassword.setText("");
+                txtUser.requestFocus();
+            }
+            
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "Recuerde, el código es tipo numerico");
+            txtUser.setText("");
+            txtPassword.setText("");
+            txtUser.requestFocus();
         }
-        //Muestra la ventana dentro de la aplicación.
-        mostrarVentanaAdministrador.setVisible(true);
         
         
+
+        
+  
     }//GEN-LAST:event_btnIniciarSesionActionPerformed
 
     private void btnMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMenuActionPerformed
@@ -392,7 +419,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnIniciarSesion;
+    public static javax.swing.JButton btnIniciarSesion;
     private javax.swing.JButton btnMenu;
     private javax.swing.JButton btnMinimizar;
     private javax.swing.JButton btnSalir;
@@ -410,7 +437,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     private javax.swing.JLabel lblDesarollador;
     private javax.swing.JLabel lblImagenFondo;
     private javax.swing.JLabel lblSalirr;
-    public javax.swing.JPasswordField txtPassword;
-    public javax.swing.JTextField txtUser;
+    public static javax.swing.JPasswordField txtPassword;
+    public static javax.swing.JTextField txtUser;
     // End of variables declaration//GEN-END:variables
 }

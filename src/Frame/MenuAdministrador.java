@@ -1,14 +1,9 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package Frame;
 
-import AppPackage.AnimationClass;
 import java.beans.PropertyVetoException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -20,7 +15,11 @@ public class MenuAdministrador extends javax.swing.JInternalFrame {
  
     public MenuAdministrador() {
         initComponents();
-        //jdkEscritorioAdmin.setBorder(new ImagenFondo());
+        //Sirve para que no haga ninguna acción a la hora de presionar la x
+        this.setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
+        VentanaPrincipal.txtPassword.setEnabled(false);
+        VentanaPrincipal.txtUser.setEnabled(false);
+        VentanaPrincipal.btnIniciarSesion.setEnabled(false);
     }
 
     /**
@@ -42,6 +41,28 @@ public class MenuAdministrador extends javax.swing.JInternalFrame {
         jdkEscritorioAdmin = new javax.swing.JDesktopPane();
 
         setClosable(true);
+        addInternalFrameListener(new javax.swing.event.InternalFrameListener() {
+            public void internalFrameActivated(javax.swing.event.InternalFrameEvent evt) {
+            }
+            public void internalFrameClosed(javax.swing.event.InternalFrameEvent evt) {
+            }
+            public void internalFrameClosing(javax.swing.event.InternalFrameEvent evt) {
+                formInternalFrameClosing(evt);
+            }
+            public void internalFrameDeactivated(javax.swing.event.InternalFrameEvent evt) {
+            }
+            public void internalFrameDeiconified(javax.swing.event.InternalFrameEvent evt) {
+            }
+            public void internalFrameIconified(javax.swing.event.InternalFrameEvent evt) {
+            }
+            public void internalFrameOpened(javax.swing.event.InternalFrameEvent evt) {
+            }
+        });
+        addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                formKeyPressed(evt);
+            }
+        });
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jpMenuAdministrador.setBackground(new java.awt.Color(255, 255, 255));
@@ -148,9 +169,18 @@ public class MenuAdministrador extends javax.swing.JInternalFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    
+    
+   
+    
     private void btnMedicamentoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMedicamentoActionPerformed
-        //Se realiza una instanciación sobre la clase RegistroVendedore para obtener todos los métodos.
+       
+        //Deshabilitar el boton de Medicameto que se encuentra en el MenuAdministrador.
+        btnMedicamento.setEnabled(false);
 
+        
+        //Se realiza una instanciación sobre la clase Medicamento para obtener todos los métodos, atributos.
+       
         Medicamento mostrarVentanaMedicamento = new Medicamento();
         //Se ancla el JinternalFrame que anteriormente se creó (se llama RegistroProveedore)
         this.jdkEscritorioAdmin.add(mostrarVentanaMedicamento);
@@ -225,6 +255,11 @@ public class MenuAdministrador extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_btnPerfilActionPerformed
 
     private void btnCredencialActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCredencialActionPerformed
+        
+        //Deshabilitar el boton de credencial que se encuentra en el MenuAdministrador.
+        btnCredencial.setEnabled(false);
+
+
         //Se realiza una instanciación sobre la clase RegistroVendedore para obtener todos los métodos.
 
         Credencial mostrarVentanaCredencial = new Credencial();
@@ -241,13 +276,31 @@ public class MenuAdministrador extends javax.swing.JInternalFrame {
         mostrarVentanaCredencial.setVisible(true);
     }//GEN-LAST:event_btnCredencialActionPerformed
 
+    private void formInternalFrameClosing(javax.swing.event.InternalFrameEvent evt) {//GEN-FIRST:event_formInternalFrameClosing
+        
+        int valor = JOptionPane.showConfirmDialog(null, "¿Esta seguro de cerrar el menu?" , "Advertencia" , JOptionPane.YES_NO_OPTION);
+        if (valor == JOptionPane.YES_OPTION) {
+            VentanaPrincipal.txtPassword.setEnabled(true);
+            VentanaPrincipal.txtUser.setEnabled(true);
+            VentanaPrincipal.btnIniciarSesion.setEnabled(true);
+            this.dispose();
+        }
+        
+        
+        
+    }//GEN-LAST:event_formInternalFrameClosing
+
+    private void formKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_formKeyPressed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_formKeyPressed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnCredencial;
-    private javax.swing.JButton btnEmpleado;
-    private javax.swing.JButton btnMedicamento;
-    private javax.swing.JButton btnPerfil;
-    private javax.swing.JButton btnProveedor;
+    public static javax.swing.JButton btnCredencial;
+    public static javax.swing.JButton btnEmpleado;
+    public static javax.swing.JButton btnMedicamento;
+    public static javax.swing.JButton btnPerfil;
+    public static javax.swing.JButton btnProveedor;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JDesktopPane jdkEscritorioAdmin;
     private javax.swing.JPanel jpMenuAdministrador;

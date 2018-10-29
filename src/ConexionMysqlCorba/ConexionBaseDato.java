@@ -1,6 +1,7 @@
 package ConexionMysqlCorba;
 
 import java.sql.*;
+import javax.swing.JOptionPane;
 
 
 /**
@@ -15,9 +16,8 @@ public class ConexionBaseDato {
         try {
             Class.forName("com.mysql.jdbc.Driver");
             conex = DriverManager.getConnection("jdbc:mysql://localhost/pruebabd","root","corhuila2018");
-            System.out.println("Conexion establecida.");
         } catch (Exception e) {
-            System.out.println(e.getMessage());
+            JOptionPane.showMessageDialog(null, "Lo sentimos, ha sucedido un problema inesperado con la conexión");
         }
         return conex;
     }
