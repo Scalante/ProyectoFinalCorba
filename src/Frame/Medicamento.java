@@ -1,32 +1,63 @@
 package Frame;
 
 import AppPackage.AnimationClass;
+import javax.swing.ImageIcon;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
-
+import javax.swing.table.TableRowSorter;
+import ModeloComboBox.*;
+import java.awt.event.ItemEvent;
+import javax.swing.DefaultComboBoxModel;
 /**
  *
  * @author Ruben
  */
 public class Medicamento extends javax.swing.JInternalFrame {
 
-    //Variables globales
-   //private final DefaultTableModel tblModeloTablaMedicamento;
+    //Variables Globales
+    private DefaultTableModel modelo;
+    TableRowSorter trs;
+    
+    //Se realiza una instanciación para que los objetos obtengan todos los metodos de esa libreria(ImageIcon)
+    ImageIcon imagenAviso =  new ImageIcon(getClass().getResource("/Imagenes/WarningAviso.png"));
+    
+    // Defino la variable publica indice, que almacena el indice del JTable.
+    public int indiceFila;  
     
     
     public Medicamento() {
-        //tblModeloTablaMedicamento = new DefaultTableModel(null, getColumn());
+  
         initComponents();
+        //Sirve para que no haga ninguna acción a la hora de presionar la x
+        this.setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
+        
+        //Llenamos todos los datos que se encuentran en la BD para el ComboBox
+        
+        CondicionMedicamento condMedicamento = new CondicionMedicamento();
+        
+        //Creamos un Objeto para obtener el modelo del comboBox
+        DefaultComboBoxModel cmbCondicion = new DefaultComboBoxModel(condMedicamento.mostraCondicion());
+        this.cmbCondicion.setModel(cmbCondicion);
         
     }
     
+    
     //Metodo para cargar las columnas en la tabla
-    /*private String[] getColumn(){
-        String columnas[] = new String[]{"Nombres","Apellidos","Telefono"};
-        return columnas;
-    }*/
+    private void getColumn(){
+        //Modelo de la tabla Medicamentos
+        modelo = (DefaultTableModel) tblMedicamento.getModel();
+        // Cargo las columnas de titulo al Jtable
+        modelo.addColumn("Codigo");
+        modelo.addColumn("Nombre");
+        modelo.addColumn("Estado");
+        modelo.addColumn("Presentacion");
+        modelo.addColumn("Laboratorio"); 
+        modelo.addColumn("Precio"); 
+        modelo.addColumn("Cantidad"); 
+        modelo.addColumn("Fecha Caducidad"); 
+        modelo.addColumn("Ubicacion"); 
+    }
     
-    
-
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -41,28 +72,26 @@ public class Medicamento extends javax.swing.JInternalFrame {
         btnBuscar = new javax.swing.JButton();
         btnEliminar = new javax.swing.JButton();
         btnLimpiar = new javax.swing.JButton();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
         lblGuardar = new javax.swing.JLabel();
         lblGuardar1 = new javax.swing.JLabel();
         lblGuardar2 = new javax.swing.JLabel();
         lblGuardar3 = new javax.swing.JLabel();
         lblGuardar4 = new javax.swing.JLabel();
         lblCodigo = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
-        jComboBox1 = new javax.swing.JComboBox<>();
-        jComboBox2 = new javax.swing.JComboBox<>();
-        jComboBox3 = new javax.swing.JComboBox<>();
+        txtCodigoMedicamento = new javax.swing.JTextField();
+        cmbCondicion = new javax.swing.JComboBox<>();
+        cmbPresentacion = new javax.swing.JComboBox<>();
+        cmbLaboratorio = new javax.swing.JComboBox<>();
         jLabel2 = new javax.swing.JLabel();
-        jTextField2 = new javax.swing.JTextField();
+        txtPrecioVenta = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
-        jTextField3 = new javax.swing.JTextField();
-        jDateChooser1 = new com.toedter.calendar.JDateChooser();
+        txtCantidad = new javax.swing.JTextField();
+        dateFechaCaducidad = new com.toedter.calendar.JDateChooser();
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
-        jTextField4 = new javax.swing.JTextField();
+        txtUbicacion = new javax.swing.JTextField();
         lblCodigo1 = new javax.swing.JLabel();
-        jTextField5 = new javax.swing.JTextField();
+        txtNombreMedicamento = new javax.swing.JTextField();
         lblCodigo2 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
@@ -81,10 +110,29 @@ public class Medicamento extends javax.swing.JInternalFrame {
         jSeparator4 = new javax.swing.JSeparator();
         jSeparator6 = new javax.swing.JSeparator();
         jSeparator7 = new javax.swing.JSeparator();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        tblMedicamento = new javax.swing.JTable();
 
         setBackground(new java.awt.Color(255, 255, 255));
         setClosable(true);
         setIconifiable(true);
+        addInternalFrameListener(new javax.swing.event.InternalFrameListener() {
+            public void internalFrameActivated(javax.swing.event.InternalFrameEvent evt) {
+            }
+            public void internalFrameClosed(javax.swing.event.InternalFrameEvent evt) {
+            }
+            public void internalFrameClosing(javax.swing.event.InternalFrameEvent evt) {
+                formInternalFrameClosing(evt);
+            }
+            public void internalFrameDeactivated(javax.swing.event.InternalFrameEvent evt) {
+            }
+            public void internalFrameDeiconified(javax.swing.event.InternalFrameEvent evt) {
+            }
+            public void internalFrameIconified(javax.swing.event.InternalFrameEvent evt) {
+            }
+            public void internalFrameOpened(javax.swing.event.InternalFrameEvent evt) {
+            }
+        });
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         btnGuardar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/IconoGuardar.png"))); // NOI18N
@@ -95,6 +143,11 @@ public class Medicamento extends javax.swing.JInternalFrame {
         btnGuardar.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/IconoGuardar2.png"))); // NOI18N
         btnGuardar.setRolloverSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/IconoGuardar2.png"))); // NOI18N
         btnGuardar.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/IconoGuardar.png"))); // NOI18N
+        btnGuardar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnGuardarActionPerformed(evt);
+            }
+        });
         getContentPane().add(btnGuardar, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 310, -1, -1));
 
         btnActualizar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Actualizar.png"))); // NOI18N
@@ -142,21 +195,6 @@ public class Medicamento extends javax.swing.JInternalFrame {
         btnLimpiar.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Limpiar.png"))); // NOI18N
         getContentPane().add(btnLimpiar, new org.netbeans.lib.awtextra.AbsoluteConstraints(690, 310, -1, -1));
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
-            },
-            new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
-            }
-        ));
-        jScrollPane1.setViewportView(jTable1);
-
-        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 60, 380, 200));
-
         lblGuardar.setBackground(new java.awt.Color(0, 0, 0));
         lblGuardar.setFont(new java.awt.Font("Decker", 1, 12)); // NOI18N
         lblGuardar.setForeground(new java.awt.Color(0, 0, 0));
@@ -192,43 +230,48 @@ public class Medicamento extends javax.swing.JInternalFrame {
         lblCodigo.setText("Presentación:");
         getContentPane().add(lblCodigo, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 110, -1, 20));
 
-        jTextField1.setBackground(new java.awt.Color(214, 217, 223));
-        jTextField1.setFont(new java.awt.Font("Decker", 1, 14)); // NOI18N
-        jTextField1.setForeground(new java.awt.Color(51, 51, 255));
-        jTextField1.setBorder(null);
-        getContentPane().add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 30, 120, 20));
+        txtCodigoMedicamento.setBackground(new java.awt.Color(214, 217, 223));
+        txtCodigoMedicamento.setFont(new java.awt.Font("Decker", 1, 14)); // NOI18N
+        txtCodigoMedicamento.setForeground(new java.awt.Color(51, 51, 255));
+        txtCodigoMedicamento.setBorder(null);
+        getContentPane().add(txtCodigoMedicamento, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 30, 120, 20));
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        getContentPane().add(jComboBox1, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 110, 100, -1));
+        cmbCondicion.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "*Seleccionar*", "a" }));
+        cmbCondicion.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                cmbCondicionItemStateChanged(evt);
+            }
+        });
+        getContentPane().add(cmbCondicion, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 110, 110, -1));
 
-        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        getContentPane().add(jComboBox2, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 110, 90, -1));
+        cmbPresentacion.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "*Seleccionar*", "a" }));
+        getContentPane().add(cmbPresentacion, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 110, 110, -1));
 
-        jComboBox3.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        getContentPane().add(jComboBox3, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 160, 120, -1));
+        cmbLaboratorio.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "*Seleccionar*", "a" }));
+        getContentPane().add(cmbLaboratorio, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 160, 120, -1));
 
         jLabel2.setFont(new java.awt.Font("Decker", 1, 14)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(0, 0, 0));
         jLabel2.setText("Laboratorio:");
         getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 160, -1, 30));
 
-        jTextField2.setBackground(new java.awt.Color(214, 217, 223));
-        jTextField2.setFont(new java.awt.Font("Decker", 1, 14)); // NOI18N
-        jTextField2.setForeground(new java.awt.Color(51, 51, 255));
-        jTextField2.setBorder(null);
-        getContentPane().add(jTextField2, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 210, 120, 20));
+        txtPrecioVenta.setBackground(new java.awt.Color(214, 217, 223));
+        txtPrecioVenta.setFont(new java.awt.Font("Decker", 1, 14)); // NOI18N
+        txtPrecioVenta.setForeground(new java.awt.Color(51, 51, 255));
+        txtPrecioVenta.setBorder(null);
+        getContentPane().add(txtPrecioVenta, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 210, 120, 20));
 
         jLabel3.setFont(new java.awt.Font("Decker", 1, 14)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(0, 0, 0));
         jLabel3.setText("Cantidad:");
         getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 250, -1, 20));
 
-        jTextField3.setBackground(new java.awt.Color(214, 217, 223));
-        jTextField3.setFont(new java.awt.Font("Decker", 1, 14)); // NOI18N
-        jTextField3.setForeground(new java.awt.Color(51, 51, 255));
-        jTextField3.setBorder(null);
-        getContentPane().add(jTextField3, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 250, 120, 20));
-        getContentPane().add(jDateChooser1, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 290, -1, -1));
+        txtCantidad.setBackground(new java.awt.Color(214, 217, 223));
+        txtCantidad.setFont(new java.awt.Font("Decker", 1, 14)); // NOI18N
+        txtCantidad.setForeground(new java.awt.Color(51, 51, 255));
+        txtCantidad.setBorder(null);
+        getContentPane().add(txtCantidad, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 250, 120, 20));
+        getContentPane().add(dateFechaCaducidad, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 290, -1, -1));
 
         jLabel5.setFont(new java.awt.Font("Decker", 1, 14)); // NOI18N
         jLabel5.setForeground(new java.awt.Color(0, 0, 0));
@@ -240,22 +283,22 @@ public class Medicamento extends javax.swing.JInternalFrame {
         jLabel6.setText("Ubicación:");
         getContentPane().add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 330, -1, 20));
 
-        jTextField4.setBackground(new java.awt.Color(214, 217, 223));
-        jTextField4.setFont(new java.awt.Font("Decker", 1, 14)); // NOI18N
-        jTextField4.setForeground(new java.awt.Color(51, 51, 255));
-        jTextField4.setBorder(null);
-        getContentPane().add(jTextField4, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 330, 120, 20));
+        txtUbicacion.setBackground(new java.awt.Color(214, 217, 223));
+        txtUbicacion.setFont(new java.awt.Font("Decker", 1, 14)); // NOI18N
+        txtUbicacion.setForeground(new java.awt.Color(51, 51, 255));
+        txtUbicacion.setBorder(null);
+        getContentPane().add(txtUbicacion, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 330, 120, 20));
 
         lblCodigo1.setFont(new java.awt.Font("Decker", 1, 14)); // NOI18N
         lblCodigo1.setForeground(new java.awt.Color(0, 0, 0));
         lblCodigo1.setText("Código:");
         getContentPane().add(lblCodigo1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 30, -1, 20));
 
-        jTextField5.setBackground(new java.awt.Color(214, 217, 223));
-        jTextField5.setFont(new java.awt.Font("Decker", 1, 14)); // NOI18N
-        jTextField5.setForeground(new java.awt.Color(51, 51, 255));
-        jTextField5.setBorder(null);
-        getContentPane().add(jTextField5, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 60, 120, 20));
+        txtNombreMedicamento.setBackground(new java.awt.Color(214, 217, 223));
+        txtNombreMedicamento.setFont(new java.awt.Font("Decker", 1, 14)); // NOI18N
+        txtNombreMedicamento.setForeground(new java.awt.Color(51, 51, 255));
+        txtNombreMedicamento.setBorder(null);
+        getContentPane().add(txtNombreMedicamento, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 60, 120, 20));
 
         lblCodigo2.setFont(new java.awt.Font("Decker", 1, 14)); // NOI18N
         lblCodigo2.setForeground(new java.awt.Color(0, 0, 0));
@@ -318,14 +361,33 @@ public class Medicamento extends javax.swing.JInternalFrame {
         lblDato.setText("Datos");
         getContentPane().add(lblDato, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 0, -1, -1));
         getContentPane().add(jSeparator2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 30, 10));
-        getContentPane().add(jSeparator5, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 370, 320, 10));
+        getContentPane().add(jSeparator5, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 370, 330, 10));
 
         jSeparator4.setOrientation(javax.swing.SwingConstants.VERTICAL);
-        getContentPane().add(jSeparator4, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 12, 10, 360));
+        getContentPane().add(jSeparator4, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 10, 10, 360));
 
         jSeparator6.setOrientation(javax.swing.SwingConstants.VERTICAL);
         getContentPane().add(jSeparator6, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 10, 360));
-        getContentPane().add(jSeparator7, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 10, 250, 10));
+        getContentPane().add(jSeparator7, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 10, 260, 10));
+
+        tblMedicamento = new javax.swing.JTable(){
+            public boolean isCellEditable(int rowIndex, int colIndex){
+                return false;
+            }
+        };
+        tblMedicamento.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+
+            }
+        ));
+        tblMedicamento.setAutoResizeMode(javax.swing.JTable.AUTO_RESIZE_OFF);
+        tblMedicamento.getTableHeader().setReorderingAllowed(false);
+        jScrollPane1.setViewportView(tblMedicamento);
+
+        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 50, 370, 240));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -343,7 +405,10 @@ public class Medicamento extends javax.swing.JInternalFrame {
         //El primer parametro es la posición actual del elemento gráfico
         //La segunda es la posición que quiera mover el elemento grafico.
         animacion.jTextFieldXLeft(760,650, 10, 5, txtFiltrar);
-        //animacion.jTextFieldXRight(650,760, 10, 5, txtFiltrar);
+        
+        
+        
+        getColumn();
     }//GEN-LAST:event_btnBuscarActionPerformed
 
     private void lblFlechaAbajoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblFlechaAbajoMouseClicked
@@ -383,6 +448,106 @@ public class Medicamento extends javax.swing.JInternalFrame {
         
     }//GEN-LAST:event_lblFlechaArribaMouseClicked
 
+    private void formInternalFrameClosing(javax.swing.event.InternalFrameEvent evt) {//GEN-FIRST:event_formInternalFrameClosing
+        int dialog = JOptionPane.YES_NO_OPTION;
+        //Almacena la opción que el usuario escoja (1 -> no) (0 -> Si).
+        int result = JOptionPane.showConfirmDialog(null, "¿Está seguro de cerrar la ventana?" , "Advertencia" , dialog);
+        
+        //Si el usuario presiona Si automaticamente se cierra la ventana.
+        if (result == 0) {
+            MenuAdministrador.btnMedicamento.setEnabled(true);
+            this.dispose();
+        }
+    }//GEN-LAST:event_formInternalFrameClosing
+
+    private void btnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarActionPerformed
+        
+        //********BOTON GUARDAR**********
+        
+        AnimationClass animacion = new AnimationClass();
+
+        animacion.jTextFieldXRight(650,760, 10, 5, txtFiltrar);
+        
+
+
+        //Validación de cada una de las cajas de Texto (Campos vacios).
+
+        if(txtCodigoMedicamento.getText().equals("")){
+            JOptionPane.showMessageDialog(null, "Por favor, Digita el código para el medicamento" , "¡Aviso!" , JOptionPane.INFORMATION_MESSAGE , imagenAviso);
+            txtCodigoMedicamento.requestFocus();
+            return;
+        }
+         //Validar el campo de Nombre de Medicamento.
+        if (txtNombreMedicamento.getText().equals("")) {
+            JOptionPane.showMessageDialog(null, "Por favor, Digite el nombre del medicamento" , "¡Aviso!" , JOptionPane.INFORMATION_MESSAGE , imagenAviso);
+            txtNombreMedicamento.requestFocus();
+            return;
+        }
+
+        //Validar el comboBox de Condicion, estado  del medicamento Sólido, liquido etc.
+        if (cmbCondicion.getSelectedIndex() == 0) {
+            JOptionPane.showMessageDialog(null, "Por favor, Selecciona la condición del medicamento" , "¡Aviso!" , JOptionPane.INFORMATION_MESSAGE , imagenAviso);
+            cmbCondicion.requestFocus();
+            return;
+        }
+        
+        //Validar el comboBox de Presentación pastillas, aerosol etc.
+        if (cmbPresentacion.getSelectedIndex() == 0) {
+            JOptionPane.showMessageDialog(null, "Por favor, Selecciona la Presentacion del medicamento" , "¡Aviso!" , JOptionPane.INFORMATION_MESSAGE , imagenAviso);
+            cmbPresentacion.requestFocus();
+            return;
+        }
+        //Validar el comboBox Laboratorio.
+        if (cmbLaboratorio.getSelectedIndex() == 0) {
+            JOptionPane.showMessageDialog(null, "Por favor, Selecciona el laboratorio al que pertenece el medicamento" , "¡Aviso!" , JOptionPane.INFORMATION_MESSAGE , imagenAviso);
+            cmbLaboratorio.requestFocus();
+            return;
+        }
+        //Validar el campo e Precio de venta.
+        if (txtPrecioVenta.getText().equals("")) {
+            JOptionPane.showMessageDialog(null, "Por favor, Digite el precio de venta" , "¡Aviso!" , JOptionPane.INFORMATION_MESSAGE , imagenAviso);
+            txtPrecioVenta.requestFocus();
+            return;
+        }
+        //Validar el campo de cantidad del medicamento.
+        if (txtCantidad.getText().equals("")) {
+            JOptionPane.showMessageDialog(null, "Por favor, Digita la cantidad de medicamentos" , "¡Aviso!" , JOptionPane.INFORMATION_MESSAGE , imagenAviso);
+            txtCantidad.requestFocus();
+            return;
+        }
+        //Validar la fecha de caducidad del medicamento
+        if (dateFechaCaducidad.getDate() == null) {
+            JOptionPane.showMessageDialog(null, "Por favor, Digita una fecha de caducidad" , "¡Aviso!" , JOptionPane.INFORMATION_MESSAGE , imagenAviso);
+            dateFechaCaducidad.requestFocus();
+            return;
+        }
+        //Validar el sitio donde se encentra el medicamento en la farmacia
+        if (txtUbicacion.getText().equals("")) {
+            JOptionPane.showMessageDialog(null, "Por favor, Digita el sitio donde se va a colocar el medicamento" , "¡Aviso!" , JOptionPane.INFORMATION_MESSAGE , imagenAviso);
+            txtUbicacion.requestFocus();
+            return;
+        }
+        
+        int codigoMedicamento =  Integer.parseInt(txtCodigoMedicamento.getText());
+        String nombreMedicamento = txtNombreMedicamento.getText();
+        String estadoMedicamento = cmbCondicion.getSelectedItem().toString();
+        //String 
+        
+    }//GEN-LAST:event_btnGuardarActionPerformed
+
+    private void cmbCondicionItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cmbCondicionItemStateChanged
+        
+        if (evt.getStateChange() == ItemEvent.SELECTED) {
+            
+            CondicionMedicamento condMedicamento = (CondicionMedicamento) cmbCondicion.getSelectedItem();
+            
+            
+        }
+        
+        
+        
+    }//GEN-LAST:event_cmbCondicionItemStateChanged
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnActualizar;
@@ -390,10 +555,10 @@ public class Medicamento extends javax.swing.JInternalFrame {
     private javax.swing.JButton btnEliminar;
     private javax.swing.JButton btnGuardar;
     private javax.swing.JButton btnLimpiar;
-    private javax.swing.JComboBox<String> jComboBox1;
-    private javax.swing.JComboBox<String> jComboBox2;
-    private javax.swing.JComboBox<String> jComboBox3;
-    private com.toedter.calendar.JDateChooser jDateChooser1;
+    private javax.swing.JComboBox<String> cmbCondicion;
+    private javax.swing.JComboBox<String> cmbLaboratorio;
+    private javax.swing.JComboBox<String> cmbPresentacion;
+    private com.toedter.calendar.JDateChooser dateFechaCaducidad;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel2;
@@ -410,12 +575,6 @@ public class Medicamento extends javax.swing.JInternalFrame {
     private javax.swing.JSeparator jSeparator5;
     private javax.swing.JSeparator jSeparator6;
     private javax.swing.JSeparator jSeparator7;
-    private javax.swing.JTable jTable1;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
-    private javax.swing.JTextField jTextField3;
-    private javax.swing.JTextField jTextField4;
-    private javax.swing.JTextField jTextField5;
     private javax.swing.JLabel lblCodigo;
     private javax.swing.JLabel lblCodigo1;
     private javax.swing.JLabel lblCodigo2;
@@ -429,6 +588,12 @@ public class Medicamento extends javax.swing.JInternalFrame {
     private javax.swing.JLabel lblGuardar3;
     private javax.swing.JLabel lblGuardar4;
     private javax.swing.JLabel lblTituloMedicamento;
+    public static javax.swing.JTable tblMedicamento;
+    private javax.swing.JTextField txtCantidad;
+    private javax.swing.JTextField txtCodigoMedicamento;
     private javax.swing.JTextField txtFiltrar;
+    private javax.swing.JTextField txtNombreMedicamento;
+    private javax.swing.JTextField txtPrecioVenta;
+    private javax.swing.JTextField txtUbicacion;
     // End of variables declaration//GEN-END:variables
 }

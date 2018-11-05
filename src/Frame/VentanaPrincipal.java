@@ -296,7 +296,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
             String password = String.valueOf(txtPassword.getPassword());
             
             //Se envía la sentencia Sql si el codigo y la contraseña son correctos mostrará la ventana.
-            if (objCredencial.verificar("SELECT * FROM credenciales WHERE codigo =" + codigo + "  AND password=" + password + " ") == 1) {
+            if (objCredencial.verificar("SELECT * FROM credenciales WHERE codigo =" + codigo + "  AND password= " + password) == 1) {
 
                 txtUser.setText("");
                 txtPassword.setText("");

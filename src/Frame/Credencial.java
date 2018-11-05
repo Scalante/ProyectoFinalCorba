@@ -26,13 +26,12 @@ public class Credencial extends javax.swing.JInternalFrame {
     
     // Defino la variable publica indice, que almacena el indice del JTable.
     public int indiceFila;  
-    
-    
+
     public Credencial() {
+       
         initComponents();
         //Sirve para que no haga ninguna acción a la hora de presionar la x
         this.setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
-        
     }
 
     //Metodo para cargar las columnas en la tabla
@@ -42,8 +41,7 @@ public class Credencial extends javax.swing.JInternalFrame {
         modelo.addColumn("Codigo");
         modelo.addColumn("Usuario");
         modelo.addColumn("Contraseña");
-        modelo.addColumn("Estado");
-        
+        modelo.addColumn("Estado");  
     }
     
     //Metodo para cargar los registros en la tabla
@@ -108,10 +106,6 @@ public class Credencial extends javax.swing.JInternalFrame {
         cmbEstado = new javax.swing.JComboBox<>();
         lblTituloCredencial = new javax.swing.JLabel();
         lblFlechaArriba = new javax.swing.JLabel();
-        rbtnEliminar = new javax.swing.JRadioButton();
-        rbtnGuardar = new javax.swing.JRadioButton();
-        rbtnBuscar = new javax.swing.JRadioButton();
-        rbtnActualizar = new javax.swing.JRadioButton();
         cmbUsuario = new javax.swing.JComboBox<>();
 
         setBackground(new java.awt.Color(255, 255, 255));
@@ -144,6 +138,11 @@ public class Credencial extends javax.swing.JInternalFrame {
         btnGuardar.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/IconoGuardar2.png"))); // NOI18N
         btnGuardar.setRolloverSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/IconoGuardar2.png"))); // NOI18N
         btnGuardar.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/IconoGuardar.png"))); // NOI18N
+        btnGuardar.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
+            public void mouseMoved(java.awt.event.MouseEvent evt) {
+                btnGuardarMouseMoved(evt);
+            }
+        });
         btnGuardar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnGuardarActionPerformed(evt);
@@ -159,6 +158,11 @@ public class Credencial extends javax.swing.JInternalFrame {
         btnActualizar.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Actualizar2.png"))); // NOI18N
         btnActualizar.setRolloverSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Actualizar2.png"))); // NOI18N
         btnActualizar.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Actualizar.png"))); // NOI18N
+        btnActualizar.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
+            public void mouseMoved(java.awt.event.MouseEvent evt) {
+                btnActualizarMouseMoved(evt);
+            }
+        });
         btnActualizar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnActualizarActionPerformed(evt);
@@ -189,6 +193,11 @@ public class Credencial extends javax.swing.JInternalFrame {
         btnEliminar.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Eliminar2.png"))); // NOI18N
         btnEliminar.setRolloverSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Eliminar2.png"))); // NOI18N
         btnEliminar.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Eliminar.png"))); // NOI18N
+        btnEliminar.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
+            public void mouseMoved(java.awt.event.MouseEvent evt) {
+                btnEliminarMouseMoved(evt);
+            }
+        });
         btnEliminar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnEliminarActionPerformed(evt);
@@ -224,6 +233,7 @@ public class Credencial extends javax.swing.JInternalFrame {
 
             }
         ));
+        tblCredencial.setAutoResizeMode(javax.swing.JTable.AUTO_RESIZE_OFF);
         tblCredencial.getTableHeader().setReorderingAllowed(false);
         tblCredencial.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -319,6 +329,11 @@ public class Credencial extends javax.swing.JInternalFrame {
         txtClave.setFont(new java.awt.Font("Decker", 1, 14)); // NOI18N
         txtClave.setForeground(new java.awt.Color(51, 51, 255));
         txtClave.setBorder(null);
+        txtClave.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtClaveKeyTyped(evt);
+            }
+        });
         getContentPane().add(txtClave, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 120, 120, 20));
 
         jLabel9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Capturkla.png"))); // NOI18N
@@ -328,6 +343,11 @@ public class Credencial extends javax.swing.JInternalFrame {
         txtCodigo.setFont(new java.awt.Font("Decker", 1, 14)); // NOI18N
         txtCodigo.setForeground(new java.awt.Color(51, 51, 255));
         txtCodigo.setBorder(null);
+        txtCodigo.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtCodigoKeyTyped(evt);
+            }
+        });
         getContentPane().add(txtCodigo, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 40, 120, 20));
 
         lblCodigo.setFont(new java.awt.Font("Decker", 1, 14)); // NOI18N
@@ -353,33 +373,6 @@ public class Credencial extends javax.swing.JInternalFrame {
         });
         getContentPane().add(lblFlechaArriba, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, -30, -1, -1));
 
-        grbtnCRUD.add(rbtnEliminar);
-        rbtnEliminar.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                rbtnEliminarMouseClicked(evt);
-            }
-        });
-        getContentPane().add(rbtnEliminar, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 350, -1, -1));
-
-        grbtnCRUD.add(rbtnGuardar);
-        rbtnGuardar.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                rbtnGuardarMouseClicked(evt);
-            }
-        });
-        getContentPane().add(rbtnGuardar, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 350, -1, -1));
-
-        grbtnCRUD.add(rbtnBuscar);
-        getContentPane().add(rbtnBuscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 350, -1, -1));
-
-        grbtnCRUD.add(rbtnActualizar);
-        rbtnActualizar.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                rbtnActualizarMouseClicked(evt);
-            }
-        });
-        getContentPane().add(rbtnActualizar, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 350, -1, -1));
-
         cmbUsuario.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "***Selecciona***", "Administrador", "Vendedor" }));
         getContentPane().add(cmbUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 80, 130, -1));
 
@@ -387,35 +380,22 @@ public class Credencial extends javax.swing.JInternalFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed
+
+        //Programación para que el icono del filtrar, hacer un efecto de aparecer.
+        //Instanciación de la libreria AnimatonClass.
+
+        AnimationClass animacion = new AnimationClass();
+
+        //******Filtrar******
+        //Sirve para que el campo de txtFiltrar se visualice.
+
+        //El primer parametro es la posición actual del elemento gráfico
+        //La segunda es la posición que quiera mover el elemento grafico.
+        animacion.jTextFieldXLeft(760,650, 10, 5, txtFiltrar);
+
+        getColumn();
+        cargarTabla(); 
         
-        
-        if (rbtnBuscar.isSelected()) {
-            
-            //Programación para que el icono del filtrar, hacer un efecto de aparecer.
-            //Instanciación de la libreria AnimatonClass.
-
-            AnimationClass animacion = new AnimationClass();
-
-            //******Filtrar******
-            //Sirve para que el campo de txtFiltrar se visualice.
-
-            //El primer parametro es la posición actual del elemento gráfico
-            //La segunda es la posición que quiera mover el elemento grafico.
-            animacion.jTextFieldXLeft(760,650, 10, 5, txtFiltrar);
-
-            getColumn();
-
-            TablaCredencial login = new TablaCredencial();
-            cargarTabla();  
-            grbtnCRUD.clearSelection();
-        }
-        else{
-            JOptionPane.showMessageDialog(null, "Por favor, verifica el check si se encuentra seleccionado en el botón Buscar");
-            rbtnBuscar.requestFocus();
-        }
-        
-        
-
     }//GEN-LAST:event_btnBuscarActionPerformed
 
     private void lblFlechaAbajoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblFlechaAbajoMouseClicked
@@ -453,186 +433,169 @@ public class Credencial extends javax.swing.JInternalFrame {
 
     private void btnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarActionPerformed
         
-        
-        if (rbtnGuardar.isSelected()) {
-            AnimationClass animacion = new AnimationClass();
-        
-            animacion.jTextFieldXRight(650,760, 10, 5, txtFiltrar);
-
-
-        
-            //Validación de cada una de las cajas de Texto (Campos vacios).
-
-            if(txtCodigo.getText().equals("")){
-                JOptionPane.showMessageDialog(null, "Por favor, Digita el código para la identificación del User, Contraseña" , "¡Aviso!" , JOptionPane.INFORMATION_MESSAGE , imagenAviso);
-                txtCodigo.requestFocus();
-                return;
-            }
-
-            //Validar el campo de Usuario para el Login.
-            if (cmbUsuario.getSelectedIndex() == 0) {
-                JOptionPane.showMessageDialog(null, "Por favor, Selecciona un rol" , "¡Aviso!" , JOptionPane.INFORMATION_MESSAGE , imagenAviso);
-                cmbUsuario.requestFocus();
-                return;
-            }
-            //Validar el campo de Password para el Login.
-            if (txtClave.getText().equals("")) {
-                JOptionPane.showMessageDialog(null, "Por favor, Digite una contraseña" , "¡Aviso!" , JOptionPane.INFORMATION_MESSAGE , imagenAviso);
-                txtClave.requestFocus();
-                return;
-            }
-            //Validar el campo de estado.
-            if (cmbEstado.getSelectedIndex() == 0) {
-                JOptionPane.showMessageDialog(null, "Por favor, Selecciona el estado" , "¡Aviso!" , JOptionPane.INFORMATION_MESSAGE , imagenAviso);
-                cmbEstado.requestFocus();
-                return;
-            }
-            
-            TablaCredencial  objCredencial = new TablaCredencial();
-            
-            LimpiarCampos limpar = new LimpiarCampos();
-            
-
-            //Declaración de las variables para obtener los valores que se encuentran en las cajas de texto
-            int codigo =  Integer.parseInt(txtCodigo.getText());
-            String user;
-            if (cmbUsuario.getSelectedIndex() == 1) {
-
-                user = "Administrador";
-            }
-            else {
-                user = "Vendedor";
-            }
-            
-   
-            String clave = txtClave.getText();
-            char estado;
-
-            //Si el usuario selecciona el Item 1 (Activo) se añade una A de lo contrario I
-            if (cmbEstado.getSelectedIndex() == 1) {
-
-                estado = 'A';
-            }
-            else {
-                estado = 'I';
-            }
-
-            try {
-                boolean resultado = objCredencial.insertarCredencial(codigo, user, clave , estado);
-                if(resultado == true){
-                    JOptionPane.showMessageDialog(null, "Se inserto un nuevo registro.");
-                    //Utilizamos el objeto para limpiar todos los campos.
-                    limpar.limpiarCampoCredencial();
-                    grbtnCRUD.clearSelection();
-                }else{
-                    JOptionPane.showMessageDialog(null, "Error al insertar.");
-                }
-            } catch (Exception e) {
-                JOptionPane.showMessageDialog(null, "Lo sentimos, ocurrió algo inesperado. ¡Por favor, vuelva a intentarlo!");
-            }
-        }
-        else{
-            JOptionPane.showMessageDialog(null, "Por favor, verifica el check si se encuentra seleccionado en el botón Guardar");
-            rbtnGuardar.requestFocus();
-        }
-
        
+        AnimationClass animacion = new AnimationClass();
+
+        animacion.jTextFieldXRight(650,760, 10, 5, txtFiltrar);
+        
+
+
+        //Validación de cada una de las cajas de Texto (Campos vacios).
+
+        if(txtCodigo.getText().equals("")){
+            JOptionPane.showMessageDialog(null, "Por favor, Digita el código para la identificación del User, Contraseña" , "¡Aviso!" , JOptionPane.INFORMATION_MESSAGE , imagenAviso);
+            txtCodigo.requestFocus();
+            return;
+        }
+
+        //Validar el campo de Usuario para el Login.
+        if (cmbUsuario.getSelectedIndex() == 0) {
+            JOptionPane.showMessageDialog(null, "Por favor, Selecciona un rol" , "¡Aviso!" , JOptionPane.INFORMATION_MESSAGE , imagenAviso);
+            cmbUsuario.requestFocus();
+            return;
+        }
+        //Validar el campo de Password para el Login.
+        if (txtClave.getText().equals("")) {
+            JOptionPane.showMessageDialog(null, "Por favor, Digite una contraseña" , "¡Aviso!" , JOptionPane.INFORMATION_MESSAGE , imagenAviso);
+            txtClave.requestFocus();
+            return;
+        }
+        //Validar el campo de estado.
+        if (cmbEstado.getSelectedIndex() == 0) {
+            JOptionPane.showMessageDialog(null, "Por favor, Selecciona el estado" , "¡Aviso!" , JOptionPane.INFORMATION_MESSAGE , imagenAviso);
+            cmbEstado.requestFocus();
+            return;
+        }
+
+        TablaCredencial  objCredencial = new TablaCredencial();
+
+        LimpiarCampos limpar = new LimpiarCampos();
+
+
+        //Declaración de las variables para obtener los valores que se encuentran en las cajas de texto
+        int codigo =  Integer.parseInt(txtCodigo.getText());
+        String user;
+        if (cmbUsuario.getSelectedIndex() == 1) {
+
+            user = "Administrador";
+        }
+        else {
+            user = "Vendedor";
+        }
+
+
+        String clave = txtClave.getText();
+        char estado;
+
+        //Si el usuario selecciona el Item 1 (Activo) se añade una A de lo contrario I
+        if (cmbEstado.getSelectedIndex() == 1) {
+
+            estado = 'A';
+        }
+        else {
+            estado = 'I';
+        }
+
+        try {
+            boolean resultado = objCredencial.insertarCredencial(codigo, user, clave , estado);
+            if(resultado == true){
+                JOptionPane.showMessageDialog(null, "Se inserto un nuevo registro.");
+                //Utilizamos el objeto para limpiar todos los campos.
+                limpar.limpiarCampoCredencial();
+            }else{
+                JOptionPane.showMessageDialog(null, "Error al insertar.");
+            }
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "Lo sentimos, ocurrió algo inesperado. ¡Por favor, vuelva a intentarlo!");
+        }
     }//GEN-LAST:event_btnGuardarActionPerformed
 
     private void btnActualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnActualizarActionPerformed
         
         // ******* Programación para el boton de Modificar **********
-        
-        if (rbtnActualizar.isSelected()) {
-         
-            AnimationClass animacion = new AnimationClass();
 
-            //******Filtrar******
-            //Sirve para que el campo de txtFiltrar se visualice.
+        AnimationClass animacion = new AnimationClass();
 
-            //El primer parametro es la posición actual del elemento gráfico
-            //La segunda es la posición que quiera mover el elemento grafico.
-            animacion.jTextFieldXLeft(760,650, 10, 5, txtFiltrar);
+        //******Filtrar******
+        //Sirve para que el campo de txtFiltrar se visualice.
 
-            //Saber si la tabla esta vacia esto me permite decirle al Usuario que presione el boton de buscar registros.
-            if(tblCredencial.getRowCount() == 0){
-                JOptionPane.showMessageDialog(null, "Por favor, Presione el botón de Bucar" , "¡Aviso!" , JOptionPane.INFORMATION_MESSAGE , imagenAviso );
-                return;
-            }
+        //El primer parametro es la posición actual del elemento gráfico
+        //La segunda es la posición que quiera mover el elemento grafico.
+        animacion.jTextFieldXLeft(760,650, 10, 5, txtFiltrar);
 
-            if (tblCredencial.getSelectedRow()== -1) {
-                JOptionPane.showMessageDialog(null, "Por favor, seleccione una fila" , "¡Aviso!" , JOptionPane.INFORMATION_MESSAGE , imagenAviso );
-                return;
-            }
-
-            //***Validación de cada una de las cajas de Texto (Campos vacios)***.
-
-
-            //Validar el campo de Usuario para el Login.
-            if (cmbUsuario.getSelectedIndex() == 0) {
-                JOptionPane.showMessageDialog(null, "Por favor, Selecciona un rol" , "¡Aviso!" , JOptionPane.INFORMATION_MESSAGE , imagenAviso);
-                cmbUsuario.requestFocus();
-                return;
-            }
-            //Validar el campo de Password para el Login.
-            if (txtClave.getText().equals("")) {
-                JOptionPane.showMessageDialog(null, "Por favor, Digite una contraseña" , "¡Aviso!" , JOptionPane.INFORMATION_MESSAGE , imagenAviso);
-                txtClave.requestFocus();
-                return;
-            }
-            //Validar el campo de estado.
-            if (cmbEstado.getSelectedIndex() == 0) {
-                JOptionPane.showMessageDialog(null, "Por favor, Selecciona el estado" , "¡Aviso!" , JOptionPane.INFORMATION_MESSAGE , imagenAviso);
-                cmbEstado.requestFocus();
-                return;
-            }
-
-            TablaCredencial objCredencial = new TablaCredencial();
-
-            // Defino el modelo para el JTable
-            modelo = (DefaultTableModel) tblCredencial.getModel();
-
-            LimpiarCampos limpiar = new LimpiarCampos();
-
-            //***Variables para obtener los valores de los componentes gráficos.
-
-            int codigo = Integer.parseInt(txtCodigo.getText());
-            String user;
-            if (cmbUsuario.getSelectedIndex() == 1) {
-
-                user = "Administrador";
-            }
-            else {
-                user = "Vendedor";
-            }
-            
-            String clave = txtClave.getText();
-            char estado;
-
-            //Si el usuario selecciona el Item 1 (Activo) se añade una A de lo contrario I
-            if (cmbEstado.getSelectedIndex() == 1) {
-
-                estado = 'A';
-            }
-            else {
-                estado = 'I';
-            }
-
-
-            boolean resultado = objCredencial.actualizarCredencial(codigo, user, clave, estado);
-            if(resultado == true){
-                JOptionPane.showMessageDialog(null, "Se actualizó el registro.");
-                limpiar.limpiarTabla();
-                grbtnCRUD.clearSelection();
-            }else{
-                JOptionPane.showMessageDialog(null, "Error al actualizar.");
-            } 
-            
+        //Saber si la tabla esta vacia esto me permite decirle al Usuario que presione el boton de buscar registros.
+        if(tblCredencial.getRowCount() == 0){
+            JOptionPane.showMessageDialog(null, "Por favor, Presione el botón de Bucar" , "¡Aviso!" , JOptionPane.INFORMATION_MESSAGE , imagenAviso );
+            return;
         }
-        else{
-            JOptionPane.showMessageDialog(null, "Por favor, verifica el check si se encuentra seleccionado en el botón Actualizar");
-            rbtnActualizar.requestFocus();
+
+        if (tblCredencial.getSelectedRow()== -1) {
+            JOptionPane.showMessageDialog(null, "Por favor, seleccione una fila" , "¡Aviso!" , JOptionPane.INFORMATION_MESSAGE , imagenAviso );
+            return;
         }
+
+        //***Validación de cada una de las cajas de Texto (Campos vacios)***.
+
+
+        //Validar el campo de Usuario para el Login.
+        if (cmbUsuario.getSelectedIndex() == 0) {
+            JOptionPane.showMessageDialog(null, "Por favor, Selecciona un rol" , "¡Aviso!" , JOptionPane.INFORMATION_MESSAGE , imagenAviso);
+            cmbUsuario.requestFocus();
+            return;
+        }
+        //Validar el campo de Password para el Login.
+        if (txtClave.getText().equals("")) {
+            JOptionPane.showMessageDialog(null, "Por favor, Digite una contraseña" , "¡Aviso!" , JOptionPane.INFORMATION_MESSAGE , imagenAviso);
+            txtClave.requestFocus();
+            return;
+        }
+        //Validar el campo de estado.
+        if (cmbEstado.getSelectedIndex() == 0) {
+            JOptionPane.showMessageDialog(null, "Por favor, Selecciona el estado" , "¡Aviso!" , JOptionPane.INFORMATION_MESSAGE , imagenAviso);
+            cmbEstado.requestFocus();
+            return;
+        }
+
+        TablaCredencial objCredencial = new TablaCredencial();
+
+        // Defino el modelo para el JTable
+        modelo = (DefaultTableModel) tblCredencial.getModel();
+
+        LimpiarCampos limpiar = new LimpiarCampos();
+
+        //***Variables para obtener los valores de los componentes gráficos.
+
+        int codigo = Integer.parseInt(txtCodigo.getText());
+        String user;
+        if (cmbUsuario.getSelectedIndex() == 1) {
+
+            user = "Administrador";
+        }
+        else {
+            user = "Vendedor";
+        }
+
+        String clave = txtClave.getText();
+        char estado;
+
+        //Si el usuario selecciona el Item 1 (Activo) se añade una A de lo contrario I
+        if (cmbEstado.getSelectedIndex() == 1) {
+
+            estado = 'A';
+        }
+        else {
+            estado = 'I';
+        }
+
+
+        boolean resultado = objCredencial.actualizarCredencial(codigo, user, clave, estado);
+        if(resultado == true){
+            JOptionPane.showMessageDialog(null, "Se actualizó el registro.");
+            limpiar.limpiarTabla();
+            limpiar.limpiarCampoCredencial();
+        }else{
+            JOptionPane.showMessageDialog(null, "Error al actualizar.");
+        }  
     }//GEN-LAST:event_btnActualizarActionPerformed
 
     private void tblCredencialMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblCredencialMouseClicked
@@ -640,12 +603,6 @@ public class Credencial extends javax.swing.JInternalFrame {
            Lo que hará ese evento es poner todo los datos que hayan en la tabla en los distintos.
            JtextFiel , JCombobox.
         */
-     
-        if (rbtnGuardar.isSelected() == false && rbtnBuscar.isSelected() == false && rbtnActualizar.isSelected() == false && rbtnEliminar.isSelected() == false) {
-            JOptionPane.showMessageDialog(null, "Por favor, es necesario que seleccione un opción de CRUD");
-            rbtnGuardar.requestFocus();
-            return;
-        }
 
         // Defino el modelo para el JTable
         modelo = (DefaultTableModel) tblCredencial.getModel();
@@ -679,53 +636,48 @@ public class Credencial extends javax.swing.JInternalFrame {
 
     private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
 
-        if (rbtnEliminar.isSelected()) {
-            AnimationClass animacion = new AnimationClass();
+        
+        AnimationClass animacion = new AnimationClass();
 
-            //******Filtrar******
-            //Sirve para que el campo de txtFiltrar se visualice.
+        //******Filtrar******
+        //Sirve para que el campo de txtFiltrar se visualice.
 
-            //El primer parametro es la posición actual del elemento gráfico
-            //La segunda es la posición que quiera mover el elemento grafico.
-            animacion.jTextFieldXLeft(760,650, 10, 5, txtFiltrar);
+        //El primer parametro es la posición actual del elemento gráfico
+        //La segunda es la posición que quiera mover el elemento grafico.
+        animacion.jTextFieldXLeft(760,650, 10, 5, txtFiltrar);
 
-            //Saber si la tabla esta vacia esto me permite decirle al Usuario que presione el boton de buscar registros.
-            if(this.tblCredencial.getRowCount() == 0){
-                JOptionPane.showMessageDialog(null, "Por favor, Presione el botón de Bucar" , "¡Aviso!" , JOptionPane.INFORMATION_MESSAGE , imagenAviso );
-                return;
-            }
-
-            if (tblCredencial.getSelectedRow()== -1) {
-                JOptionPane.showMessageDialog(null, "Por favor, seleccione una fila" , "¡Aviso!" , JOptionPane.INFORMATION_MESSAGE , imagenAviso );
-                return;
-            }
-
-            // Defino el modelo para el JTable
-            modelo = (DefaultTableModel) tblCredencial.getModel();
-            TablaCredencial objCredencial = new TablaCredencial();
-            LimpiarCampos limpiar = new LimpiarCampos();
-
-
-            try {
-                int codigo = Integer.parseInt(txtCodigo.getText());
-
-                boolean resultado = objCredencial.eliminarCredencial(codigo);
-                if(resultado == true){
-                    JOptionPane.showMessageDialog(null, "Se Eliminó el registro correctamente.");
-                    limpiar.limpiarCampoCredencial();
-                    grbtnCRUD.clearSelection();
-                }else{
-                    JOptionPane.showMessageDialog(null, "Error al Eliminar.");
-                }  
-
-            } catch (Exception e) {
-                JOptionPane.showMessageDialog(null, "Lo sentimos, ocurrió algo inesperado ¡Por favor, vuelva a intentarlo!" + e);
-            }
+        //Saber si la tabla esta vacia esto me permite decirle al Usuario que presione el boton de buscar registros.
+        if(this.tblCredencial.getRowCount() == 0){
+            JOptionPane.showMessageDialog(null, "Por favor, Presione el botón de Bucar" , "¡Aviso!" , JOptionPane.INFORMATION_MESSAGE , imagenAviso );
+            return;
         }
-        else{
-            JOptionPane.showMessageDialog(null, "Por favor, verifica el check si se encuentra seleccionado en el botón Eliminar");
-            rbtnEliminar.requestFocus();
-        }    
+
+        if (tblCredencial.getSelectedRow()== -1) {
+            JOptionPane.showMessageDialog(null, "Por favor, seleccione una fila" , "¡Aviso!" , JOptionPane.INFORMATION_MESSAGE , imagenAviso );
+            return;
+        }
+
+        // Defino el modelo para el JTable
+        modelo = (DefaultTableModel) tblCredencial.getModel();
+        TablaCredencial objCredencial = new TablaCredencial();
+        LimpiarCampos limpiar = new LimpiarCampos();
+
+
+        try {
+            int codigo = Integer.parseInt(txtCodigo.getText());
+
+            boolean resultado = objCredencial.eliminarCredencial(codigo);
+            if(resultado == true){
+                JOptionPane.showMessageDialog(null, "Se Eliminó el registro correctamente.");
+                limpiar.limpiarCampoCredencial();
+                limpiar.limpiarTabla();
+            }else{
+                JOptionPane.showMessageDialog(null, "Error al Eliminar.");
+            }  
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "Lo sentimos, ocurrió algo inesperado ¡Por favor, vuelva a intentarlo!" + e);
+        }
+          
     }//GEN-LAST:event_btnEliminarActionPerformed
 
     private void btnLimpiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLimpiarActionPerformed
@@ -733,8 +685,6 @@ public class Credencial extends javax.swing.JInternalFrame {
         
         LimpiarCampos limpar = new LimpiarCampos();
         
-        //Limpiar las seleccion de los radiobutton
-        grbtnCRUD.clearSelection();
         
         // Defino el modelo para el JTable
         modelo = (DefaultTableModel) tblCredencial.getModel();
@@ -770,33 +720,6 @@ public class Credencial extends javax.swing.JInternalFrame {
         tblCredencial.setRowSorter(trs);
     }//GEN-LAST:event_txtFiltrarKeyTyped
 
-    private void rbtnGuardarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_rbtnGuardarMouseClicked
-        
-        txtCodigo.setEditable(true);
-        cmbUsuario.setEnabled(true);
-        txtClave.setEditable(true);
-        cmbEstado.setEnabled(true);
-        btnGuardar.setEnabled(true);
-        
-        
-    }//GEN-LAST:event_rbtnGuardarMouseClicked
-
-    private void rbtnActualizarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_rbtnActualizarMouseClicked
-        txtCodigo.setEditable(false);
-        cmbUsuario.setEnabled(true);
-        txtClave.setEditable(true);
-        cmbEstado.setEnabled(true);
-        btnGuardar.setEnabled(false);
-    }//GEN-LAST:event_rbtnActualizarMouseClicked
-
-    private void rbtnEliminarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_rbtnEliminarMouseClicked
-        txtCodigo.setEditable(false);
-        cmbUsuario.setEnabled(false);
-        txtClave.setEditable(false);
-        cmbEstado.setEnabled(false);
-        btnGuardar.setEnabled(false);
-    }//GEN-LAST:event_rbtnEliminarMouseClicked
-
     private void formInternalFrameClosing(javax.swing.event.InternalFrameEvent evt) {//GEN-FIRST:event_formInternalFrameClosing
         
         int dialog = JOptionPane.YES_NO_OPTION;
@@ -809,6 +732,51 @@ public class Credencial extends javax.swing.JInternalFrame {
             this.dispose();
         }
     }//GEN-LAST:event_formInternalFrameClosing
+
+    private void btnGuardarMouseMoved(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnGuardarMouseMoved
+
+        txtCodigo.setEditable(true);
+        txtClave.setEditable(true);
+        cmbUsuario.setEnabled(true);
+        cmbEstado.setEnabled(true);
+
+    }//GEN-LAST:event_btnGuardarMouseMoved
+
+    private void btnActualizarMouseMoved(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnActualizarMouseMoved
+        txtCodigo.setEditable(false);
+        txtClave.setEditable(true);
+        cmbUsuario.setEnabled(true);
+        cmbEstado.setEnabled(true);
+    }//GEN-LAST:event_btnActualizarMouseMoved
+
+    private void btnEliminarMouseMoved(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnEliminarMouseMoved
+        txtCodigo.setEditable(false);
+        txtClave.setEditable(false);
+        cmbUsuario.setEnabled(false);
+        cmbEstado.setEnabled(false);
+    }//GEN-LAST:event_btnEliminarMouseMoved
+
+    private void txtCodigoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCodigoKeyTyped
+        //Se declara una variable de tipo char para obtener todos los métodos del evt.getKeyChar();
+        char soloNumero = evt.getKeyChar();
+        
+        //si el usuario digita letras o caracteres especiales u otro caracter el teclado no aceptará y se bloqueará. 
+        if ((soloNumero < '0' || soloNumero > '9')) {
+            evt.consume();
+            getToolkit().beep(); 
+        }
+    }//GEN-LAST:event_txtCodigoKeyTyped
+
+    private void txtClaveKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtClaveKeyTyped
+        //Se declara una variable de tipo char para obtener todos los métodos del evt.getKeyChar();
+        char soloNumero = evt.getKeyChar();
+        
+        //si el usuario digita letras o caracteres especiales u otro caracter el teclado no aceptará y se bloqueará. 
+        if ((soloNumero < '0' || soloNumero > '9')) {
+            evt.consume();
+            getToolkit().beep();   
+        }
+    }//GEN-LAST:event_txtClaveKeyTyped
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -842,10 +810,6 @@ public class Credencial extends javax.swing.JInternalFrame {
     private javax.swing.JLabel lblLimpiar;
     private javax.swing.JLabel lblTituloCredencial;
     private javax.swing.JLabel lblUsuario;
-    private javax.swing.JRadioButton rbtnActualizar;
-    private javax.swing.JRadioButton rbtnBuscar;
-    private javax.swing.JRadioButton rbtnEliminar;
-    private javax.swing.JRadioButton rbtnGuardar;
     public static javax.swing.JTable tblCredencial;
     public static javax.swing.JTextField txtClave;
     public static javax.swing.JTextField txtCodigo;
