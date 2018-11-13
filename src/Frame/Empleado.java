@@ -280,7 +280,7 @@ public class Empleado extends javax.swing.JInternalFrame {
         });
         getContentPane().add(btnLimpiar, new org.netbeans.lib.awtextra.AbsoluteConstraints(690, 320, -1, -1));
 
-        tblCredencial = new javax.swing.JTable(){
+        tblEmpleado = new javax.swing.JTable(){
             public boolean isCellEditable(int rowIndex, int colIndex){
                 return false;
             }
