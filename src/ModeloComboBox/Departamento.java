@@ -46,6 +46,8 @@ public class Departamento {
     //Permite agregar el id y lo tome como su indice y su nombre como valor visible al Usuario
     public Vector<Departamento> mostrarDepartamento(){
        
+        //Realizamos la conexion con la base de datos
+        
         PreparedStatement ps = null;
         Connection conexx = (Connection) conexion.conectar();
         

@@ -46,6 +46,8 @@ public class Ciudad {
     //Permite agregar el id y lo tome como su indice y su nombre como valor visible al Usuario
     public Vector<Ciudad> mostrarCiudad(Integer idDepartamento){
        
+        //Realizamos la conexion con la base de datos
+        
         PreparedStatement ps = null;
         ResultSet rs = null;
         Connection conexx = (Connection) conexion.conectar();
