@@ -1,0 +1,17 @@
+module Medicamentos {
+    interface Medicamento{
+        
+        boolean insertarMedicamento(in long codigo, in wstring nombre, in long idCondicion, in long idPresentacion, in long ruesLab ,in long precioVenta, in long cantidad, in wstring fechaCaducidad, in wstring ubicacion);
+        
+        boolean actualizarMedicamento(in long codigo, in wstring nombre, in long idCondicion, in long idPresentacion, in long ruesLab ,in long precioVenta, in long cantidad, in wstring fechaCaducidad, in wstring ubicacion);        
+        
+        boolean eliminarMedicamento(in long codigo, in long idCondicion, in long idPresentacion, in long ruesLab);
+        
+        wstring consultarMedicamento(in long codigo);
+       
+        oneway void shutdown();
+        
+    };
+
+};
+
