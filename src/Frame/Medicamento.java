@@ -215,6 +215,11 @@ public class Medicamento extends javax.swing.JInternalFrame {
         btnGuardar.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/IconoGuardar2.png"))); // NOI18N
         btnGuardar.setRolloverSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/IconoGuardar2.png"))); // NOI18N
         btnGuardar.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/IconoGuardar.png"))); // NOI18N
+        btnGuardar.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
+            public void mouseMoved(java.awt.event.MouseEvent evt) {
+                btnGuardarMouseMoved(evt);
+            }
+        });
         btnGuardar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnGuardarActionPerformed(evt);
@@ -230,6 +235,11 @@ public class Medicamento extends javax.swing.JInternalFrame {
         btnActualizar.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Actualizar2.png"))); // NOI18N
         btnActualizar.setRolloverSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Actualizar2.png"))); // NOI18N
         btnActualizar.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Actualizar.png"))); // NOI18N
+        btnActualizar.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
+            public void mouseMoved(java.awt.event.MouseEvent evt) {
+                btnActualizarMouseMoved(evt);
+            }
+        });
         btnActualizar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnActualizarActionPerformed(evt);
@@ -260,6 +270,11 @@ public class Medicamento extends javax.swing.JInternalFrame {
         btnEliminar.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Eliminar2.png"))); // NOI18N
         btnEliminar.setRolloverSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Eliminar2.png"))); // NOI18N
         btnEliminar.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Eliminar.png"))); // NOI18N
+        btnEliminar.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
+            public void mouseMoved(java.awt.event.MouseEvent evt) {
+                btnEliminarMouseMoved(evt);
+            }
+        });
         btnEliminar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnEliminarActionPerformed(evt);
@@ -914,6 +929,44 @@ public class Medicamento extends javax.swing.JInternalFrame {
        //Acudimos al método limpiar, nos permite limpiar todos los componentes gráficos
         limpiarCampo();
     }//GEN-LAST:event_btnLimpiarActionPerformed
+
+    private void btnGuardarMouseMoved(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnGuardarMouseMoved
+
+        txtCodigoMedicamento.setEditable(true);
+        txtNombreMedicamento.setEditable(true);
+        cmbCondicion.setEnabled(true);
+        cmbPresentacion.setEnabled(true);
+        cmbLaboratorio.setEnabled(true);
+        txtPrecioVenta.setEditable(true);
+        txtCantidad.setEditable(true);
+        dateFechaCaducidad.setEnabled(true);
+        txtUbicacion.setEditable(true);
+    }//GEN-LAST:event_btnGuardarMouseMoved
+
+    private void btnActualizarMouseMoved(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnActualizarMouseMoved
+        
+        txtCodigoMedicamento.setEditable(false);
+        txtNombreMedicamento.setEditable(true);
+        cmbCondicion.setEnabled(true);
+        cmbPresentacion.setEnabled(true);
+        cmbLaboratorio.setEnabled(true);
+        txtPrecioVenta.setEditable(true);
+        txtCantidad.setEditable(true);
+        dateFechaCaducidad.setEnabled(true);
+        txtUbicacion.setEditable(true);
+    }//GEN-LAST:event_btnActualizarMouseMoved
+
+    private void btnEliminarMouseMoved(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnEliminarMouseMoved
+        txtCodigoMedicamento.setEditable(false);
+        txtNombreMedicamento.setEditable(false);
+        cmbCondicion.setEnabled(false);
+        cmbPresentacion.setEnabled(false);
+        cmbLaboratorio.setEnabled(false);
+        txtPrecioVenta.setEditable(false);
+        txtCantidad.setEditable(false);
+        dateFechaCaducidad.setEnabled(false);
+        txtUbicacion.setEditable(false);
+    }//GEN-LAST:event_btnEliminarMouseMoved
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

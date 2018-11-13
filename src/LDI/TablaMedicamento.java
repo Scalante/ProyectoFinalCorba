@@ -73,7 +73,7 @@ public class TablaMedicamento extends MedicamentoPOA{
             sql = "DELETE FROM medicamentos WHERE codigo =" + codigo;
             objConect.conectar();
             Statement st = objConect.conex.createStatement();
-            int valor = st.executeUpdate("p");
+            int valor = st.executeUpdate(sql);
             if(valor>0){
                 resultado = true;
             }

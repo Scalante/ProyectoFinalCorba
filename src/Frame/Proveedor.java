@@ -144,6 +144,11 @@ public class Proveedor extends javax.swing.JInternalFrame {
         btnGuardar.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/IconoGuardar2.png"))); // NOI18N
         btnGuardar.setRolloverSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/IconoGuardar2.png"))); // NOI18N
         btnGuardar.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/IconoGuardar.png"))); // NOI18N
+        btnGuardar.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
+            public void mouseMoved(java.awt.event.MouseEvent evt) {
+                btnGuardarMouseMoved(evt);
+            }
+        });
         btnGuardar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnGuardarActionPerformed(evt);
@@ -159,6 +164,11 @@ public class Proveedor extends javax.swing.JInternalFrame {
         btnActualizar.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Actualizar2.png"))); // NOI18N
         btnActualizar.setRolloverSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Actualizar2.png"))); // NOI18N
         btnActualizar.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Actualizar.png"))); // NOI18N
+        btnActualizar.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
+            public void mouseMoved(java.awt.event.MouseEvent evt) {
+                btnActualizarMouseMoved(evt);
+            }
+        });
         btnActualizar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnActualizarActionPerformed(evt);
@@ -189,6 +199,11 @@ public class Proveedor extends javax.swing.JInternalFrame {
         btnEliminar.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Eliminar2.png"))); // NOI18N
         btnEliminar.setRolloverSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Eliminar2.png"))); // NOI18N
         btnEliminar.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Eliminar.png"))); // NOI18N
+        btnEliminar.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
+            public void mouseMoved(java.awt.event.MouseEvent evt) {
+                btnEliminarMouseMoved(evt);
+            }
+        });
         btnEliminar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnEliminarActionPerformed(evt);
@@ -211,6 +226,11 @@ public class Proveedor extends javax.swing.JInternalFrame {
         });
         getContentPane().add(btnLimpiar, new org.netbeans.lib.awtextra.AbsoluteConstraints(690, 320, -1, -1));
 
+        tblProveedor = new javax.swing.JTable(){
+            public boolean isCellEditable(int rowIndex, int colIndex){
+                return false;
+            }
+        };
         tblProveedor.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
@@ -661,6 +681,33 @@ public class Proveedor extends javax.swing.JInternalFrame {
             this.cmbCiudad.setModel(objCiudad);
         }
     }//GEN-LAST:event_cmbDepartamentoItemStateChanged
+
+    private void btnGuardarMouseMoved(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnGuardarMouseMoved
+        txtRues.setEditable(true);
+        txtNombreLaboratorio.setEditable(true);
+        cmbDepartamento.setEnabled(true);
+        cmbCiudad.setEnabled(true);
+        txtDireccion.setEditable(true);
+        txtTelefono.setEditable(true);
+    }//GEN-LAST:event_btnGuardarMouseMoved
+
+    private void btnActualizarMouseMoved(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnActualizarMouseMoved
+        txtRues.setEditable(false);
+        txtNombreLaboratorio.setEditable(true);
+        cmbDepartamento.setEnabled(true);
+        cmbCiudad.setEnabled(true);
+        txtDireccion.setEditable(true);
+        txtTelefono.setEditable(true);
+    }//GEN-LAST:event_btnActualizarMouseMoved
+
+    private void btnEliminarMouseMoved(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnEliminarMouseMoved
+        txtRues.setEditable(false);
+        txtNombreLaboratorio.setEditable(false);
+        cmbDepartamento.setEnabled(false);
+        cmbCiudad.setEnabled(false);
+        txtDireccion.setEditable(false);
+        txtTelefono.setEditable(false);
+    }//GEN-LAST:event_btnEliminarMouseMoved
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
