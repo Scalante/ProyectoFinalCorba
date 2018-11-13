@@ -1,0 +1,17 @@
+module Proveedores {
+    interface Proveedor{
+        
+        boolean insertarProveedor(in long rues, in wstring nombre, in long idDepartamento, in long idCiudad, in wstring direccion, in wstring telefono);
+        
+        boolean actualizarProveedor(in long rues, in wstring nombre, in long idDepartamento, in long idCiudad, in wstring direccion, in wstring telefono);
+
+        boolean eliminarProveedor(in long rues);
+        
+        wstring consultarProveedor(in long rues);
+       
+        oneway void shutdown();
+        
+    };
+
+};
+
