@@ -1,0 +1,18 @@
+module Empleados {
+    interface Empleado{
+        
+        boolean insertarEmpleado(in long identificacion, in wstring nombre, in long idDepartamento, in long idCiudad, in wstring direcion ,in wstring correo, in wstring telefono, in wchar estado, in wstring urlImagen, in octet imagen);
+        
+        boolean actualizarEmpleado(in long identificacion, in wstring nombre, in long idDepartamento, in long idCiudad, in wstring direcion ,in wstring correo, in wstring telefono, in wchar estado, in wstring urlImagen, in octet imagen);
+
+        boolean eliminarEmpleado(in long identificacion);
+        
+        wstring consultarEmpleado(in long identificacion);
+       
+        oneway void shutdown();
+        
+    };
+
+};
+
+
