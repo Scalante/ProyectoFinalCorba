@@ -233,7 +233,6 @@ public class Credencial extends javax.swing.JInternalFrame {
 
             }
         ));
-        tblCredencial.setAutoResizeMode(javax.swing.JTable.AUTO_RESIZE_OFF);
         tblCredencial.getTableHeader().setReorderingAllowed(false);
         tblCredencial.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -393,6 +392,14 @@ public class Credencial extends javax.swing.JInternalFrame {
         //La segunda es la posición que quiera mover el elemento grafico.
         animacion.jTextFieldXLeft(760,650, 10, 5, txtFiltrar);
 
+        
+        if(tblCredencial.getRowCount() != 0){
+            //Limpiamos la tabla, porque sabemos que hay información.
+            // Limpio las filas y las columnas de la tabla
+            modelo.setColumnCount(0);
+            modelo.setNumRows(0);
+        }
+        //Mostramos la información que se encuentra en la BD al Usuario
         getColumn();
         cargarTabla(); 
         
@@ -556,10 +563,7 @@ public class Credencial extends javax.swing.JInternalFrame {
             return;
         }
 
-        TablaCredencial objCredencial = new TablaCredencial();
-
-        // Defino el modelo para el JTable
-        modelo = (DefaultTableModel) tblCredencial.getModel();
+        TablaCredencial objCredencial = new TablaCredencial();    
 
         LimpiarCampos limpiar = new LimpiarCampos();
 
@@ -591,15 +595,21 @@ public class Credencial extends javax.swing.JInternalFrame {
         boolean resultado = objCredencial.actualizarCredencial(codigo, user, clave, estado);
         if(resultado == true){
             JOptionPane.showMessageDialog(null, "Se actualizó el registro.");
+            //Se realiza la limpieza al JTable
             limpiar.limpiarTabla();
+            //Se realiza la liempieza a los TexField, ComboBox etc.
             limpiar.limpiarCampoCredencial();
+            //Mostramos las columnas (La informacion que identifica a cada tabla en la BD)
+            getColumn();
+            //Actualizamos la tabla (Buscamos todos los registros)
+            cargarTabla();
         }else{
             JOptionPane.showMessageDialog(null, "Error al actualizar.");
         }  
     }//GEN-LAST:event_btnActualizarActionPerformed
 
     private void tblCredencialMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblCredencialMouseClicked
-         /* Evento para cuendo el usuario presione click en cualquier fila de la tabla. 
+        /* Evento para cuendo el usuario presione click en cualquier fila de la tabla. 
            Lo que hará ese evento es poner todo los datos que hayan en la tabla en los distintos.
            JtextFiel , JCombobox.
         */
@@ -647,7 +657,7 @@ public class Credencial extends javax.swing.JInternalFrame {
         animacion.jTextFieldXLeft(760,650, 10, 5, txtFiltrar);
 
         //Saber si la tabla esta vacia esto me permite decirle al Usuario que presione el boton de buscar registros.
-        if(this.tblCredencial.getRowCount() == 0){
+        if(tblCredencial.getRowCount() == 0){
             JOptionPane.showMessageDialog(null, "Por favor, Presione el botón de Bucar" , "¡Aviso!" , JOptionPane.INFORMATION_MESSAGE , imagenAviso );
             return;
         }
@@ -657,20 +667,25 @@ public class Credencial extends javax.swing.JInternalFrame {
             return;
         }
 
-        // Defino el modelo para el JTable
-        modelo = (DefaultTableModel) tblCredencial.getModel();
         TablaCredencial objCredencial = new TablaCredencial();
         LimpiarCampos limpiar = new LimpiarCampos();
 
 
         try {
+            
+            // Asigno el indice del elemento seleccionado
+            indiceFila = tblCredencial.getSelectedRow();
+
+            // Elimino el registro del JTable
+            modelo.removeRow(indiceFila);
+            
+            
             int codigo = Integer.parseInt(txtCodigo.getText());
 
             boolean resultado = objCredencial.eliminarCredencial(codigo);
             if(resultado == true){
                 JOptionPane.showMessageDialog(null, "Se Eliminó el registro correctamente.");
                 limpiar.limpiarCampoCredencial();
-                limpiar.limpiarTabla();
             }else{
                 JOptionPane.showMessageDialog(null, "Error al Eliminar.");
             }  

@@ -140,12 +140,15 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         jpIngreso.add(btnIniciarSesion, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 470, 90, 30));
 
         lblSalirr.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/icons8_Multiply_32px.png"))); // NOI18N
+        lblSalirr.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jpIngreso.add(lblSalirr, new org.netbeans.lib.awtextra.AbsoluteConstraints(-35, 200, -1, 40));
 
         lblDesarollador.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Icon_Desarrolladores.png"))); // NOI18N
+        lblDesarollador.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jpIngreso.add(lblDesarollador, new org.netbeans.lib.awtextra.AbsoluteConstraints(-35, 150, -1, 40));
 
         lblAyuda.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/help.png"))); // NOI18N
+        lblAyuda.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jpIngreso.add(lblAyuda, new org.netbeans.lib.awtextra.AbsoluteConstraints(-35, 100, -1, 40));
 
         btnMenu.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/icons8_Menu_32px.png"))); // NOI18N

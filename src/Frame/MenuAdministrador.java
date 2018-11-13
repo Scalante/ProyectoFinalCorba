@@ -36,7 +36,6 @@ public class MenuAdministrador extends javax.swing.JInternalFrame {
         btnMedicamento = new javax.swing.JButton();
         btnProveedor = new javax.swing.JButton();
         btnEmpleado = new javax.swing.JButton();
-        btnPerfil = new javax.swing.JButton();
         btnCredencial = new javax.swing.JButton();
         jdkEscritorioAdmin = new javax.swing.JDesktopPane();
 
@@ -127,24 +126,6 @@ public class MenuAdministrador extends javax.swing.JInternalFrame {
         });
         jpMenuAdministrador.add(btnEmpleado, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 20, -1, -1));
 
-        btnPerfil.setFont(new java.awt.Font("Decker", 1, 14)); // NOI18N
-        btnPerfil.setForeground(new java.awt.Color(0, 0, 0));
-        btnPerfil.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Perfil.png"))); // NOI18N
-        btnPerfil.setText("Perfil");
-        btnPerfil.setBorder(null);
-        btnPerfil.setBorderPainted(false);
-        btnPerfil.setContentAreaFilled(false);
-        btnPerfil.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        btnPerfil.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Perfil2.png"))); // NOI18N
-        btnPerfil.setRolloverSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Perfil2.png"))); // NOI18N
-        btnPerfil.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Perfil.png"))); // NOI18N
-        btnPerfil.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnPerfilActionPerformed(evt);
-            }
-        });
-        jpMenuAdministrador.add(btnPerfil, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 20, -1, -1));
-
         btnCredencial.setFont(new java.awt.Font("Decker", 1, 14)); // NOI18N
         btnCredencial.setForeground(new java.awt.Color(0, 0, 0));
         btnCredencial.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Credenciales.png"))); // NOI18N
@@ -178,7 +159,6 @@ public class MenuAdministrador extends javax.swing.JInternalFrame {
         //Deshabilitar el boton de Medicameto que se encuentra en el MenuAdministrador.
         btnMedicamento.setEnabled(false);
 
-        
         //Se realiza una instanciación sobre la clase Medicamento para obtener todos los métodos, atributos.
        
         Medicamento mostrarVentanaMedicamento = new Medicamento();
@@ -200,8 +180,11 @@ public class MenuAdministrador extends javax.swing.JInternalFrame {
 
     private void btnProveedorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnProveedorActionPerformed
         
-        //Se realiza una instanciación sobre la clase Proveedor para obtener todos los métodos, atributos.
+        //Deshabilitar el boton de Proveedores que se encuentra en el MenuAdministrador.
+        btnProveedor.setEnabled(false);
 
+        //Se realiza una instanciación sobre la clase Proveedor para obtener todos los métodos, atributos.
+        
         Proveedor mostrarVentanaProveedor = new Proveedor();
         //Se ancla el JinternalFrame que anteriormente se creó (se llama Proveedor)
         this.jdkEscritorioAdmin.add(mostrarVentanaProveedor);
@@ -214,14 +197,13 @@ public class MenuAdministrador extends javax.swing.JInternalFrame {
         }
         //Muestra la ventana dentro de la aplicación.
         mostrarVentanaProveedor.setVisible(true);
-        
-        
-        
-        
     }//GEN-LAST:event_btnProveedorActionPerformed
 
     private void btnEmpleadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEmpleadoActionPerformed
         //Se realiza una instanciación sobre la clase RegistroVendedore para obtener todos los métodos.
+        
+        //Deshabilitar el boton de Empleados que se encuentra en el MenuAdministrador.
+        btnEmpleado.setEnabled(false);
 
         Empleado mostrarVentanaEmpleado = new Empleado();
         //Se ancla el JinternalFrame que anteriormente se creó (se llama RegistroProveedore)
@@ -236,23 +218,6 @@ public class MenuAdministrador extends javax.swing.JInternalFrame {
         //Muestra la ventana dentro de la aplicación.
         mostrarVentanaEmpleado.setVisible(true);
     }//GEN-LAST:event_btnEmpleadoActionPerformed
-
-    private void btnPerfilActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPerfilActionPerformed
-        //Se realiza una instanciación sobre la clase RegistroVendedore para obtener todos los métodos.
-
-        Perfil mostrarVentanaPerfil = new Perfil();
-        //Se ancla el JinternalFrame que anteriormente se creó (se llama RegistroProveedore)
-        this.jdkEscritorioAdmin.add(mostrarVentanaPerfil);
-        /* ***Se emplea un try para ejecutar satisfactoriamente el maximizar en el area de Desktop Pane(Componente de Java Swing).
-        ***Si sucede alguna eventualidad(error) entraría al catch y posteriormente dirá el error presentado */
-        try {
-            mostrarVentanaPerfil.setMaximum(true);
-        } catch (PropertyVetoException ex) {
-            Logger.getLogger(VentanaPrincipal.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        //Muestra la ventana dentro de la aplicación.
-        mostrarVentanaPerfil.setVisible(true);
-    }//GEN-LAST:event_btnPerfilActionPerformed
 
     private void btnCredencialActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCredencialActionPerformed
         
@@ -299,7 +264,6 @@ public class MenuAdministrador extends javax.swing.JInternalFrame {
     public static javax.swing.JButton btnCredencial;
     public static javax.swing.JButton btnEmpleado;
     public static javax.swing.JButton btnMedicamento;
-    public static javax.swing.JButton btnPerfil;
     public static javax.swing.JButton btnProveedor;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JDesktopPane jdkEscritorioAdmin;

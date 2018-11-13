@@ -11,7 +11,7 @@ import javax.swing.JOptionPane;
  *
  * @author Ruben Dario Scalnate Rojas
  */
-public class Ciudad {
+public class Presentacion {
     
     private int id;
     private String nombre;
@@ -37,31 +37,27 @@ public class Ciudad {
         return this.nombre;
     }
     
-    public ResultSet rs = null;
-    
     ConexionBaseDato conexion = new ConexionBaseDato();
     
     //Sirve para agregar los valores al ComboBox
     //Permite agregar el id y lo tome como su indice y su nombre como valor visible al Usuario
-    public Vector<Ciudad> mostrarCiudad(Integer idDepartamento){
+    public Vector<Presentacion> mostrarPresentacion(Integer idCondMedicamento){
        
-        //Realizamos la conexion con la base de datos
-        
         PreparedStatement ps = null;
         ResultSet rs = null;
         Connection conexx = (Connection) conexion.conectar();
         
-        Vector<Ciudad> datos = new Vector<Ciudad>();
-        Ciudad dat = null;
+        Vector<Presentacion> datos = new Vector<Presentacion>();
+        Presentacion dat = null;
         
         try {
-            String sql = "SELECT * FROM ciudad WHERE ci_departamento_id=" + idDepartamento;
+            String sql = "SELECT * FROM presentacion WHERE condicion_id=" + idCondMedicamento;
             ps = conexx.prepareStatement(sql);
             rs = ps.executeQuery();
             
             //Creamos una instanciacion de la misma clase
             //Me permite que el objeto dat pueda acceder a todos los atributos, metodos
-            dat = new Ciudad();
+            dat = new Presentacion();
             //Le enviamos el 0 porque el ComboBox si index es el 0 inicialmente
             dat.setId(0);
             dat.setNombre("*Selecciona*");
@@ -71,8 +67,8 @@ public class Ciudad {
             
             while (rs.next()) {                
                 
-                dat = new Ciudad();
-                dat.setId(rs.getInt("idCiudad"));
+                dat = new Presentacion();
+                dat.setId(rs.getInt("id"));
                 dat.setNombre(rs.getString("descripcion"));
                 datos.add(dat);
                 
@@ -82,10 +78,12 @@ public class Ciudad {
             rs.close();
         
         } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null, "Lo sentimos, ha ocurrido en Error" + ex.getMessage());
+            JOptionPane.showMessageDialog(null, "Lo sentimos, a ocurrido en Erro" + ex.getMessage());
         }
         
         return datos;
         
     }
+    
+    
 }

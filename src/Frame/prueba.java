@@ -1,6 +1,7 @@
 
 package Frame;
 import LDI.*;
+import ModeloComboBox.Ciudad;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
@@ -31,7 +32,16 @@ public class prueba {
         String password = "445";
         
         //obj.consultar("SELECT * FROM credenciales WHERE codigo =" + user + "  AND password=" + password + " ");
+        
+        Ciudad c = new Ciudad();
+        
+         Proveedor a = new Proveedor();
+         
+      
+        
     }
+    
+ 
     
     
 }
