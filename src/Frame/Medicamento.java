@@ -882,7 +882,14 @@ public class Medicamento extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_tblMedicamentoMouseClicked
 
     private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
-         //Saber si la tabla esta vacia esto me permite decirle al Usuario que presione el boton de buscar registros.
+
+        if(txtCodigoMedicamento.getText().equals("")){
+            JOptionPane.showMessageDialog(null, "Lo sentimos, sin el código no se puede realizar la eliminación, ¡vuelva a cargar el registro!" , "¡Aviso!" , JOptionPane.INFORMATION_MESSAGE , imagenAviso);
+            txtCodigoMedicamento.requestFocus();
+            return;
+        }
+        
+        //Saber si la tabla esta vacia esto me permite decirle al Usuario que presione el boton de buscar registros.
         if (tblMedicamento.getRowCount() == 0) {
             JOptionPane.showMessageDialog(null, "Por favor, Presione el botón de Bucar", "¡Aviso!", JOptionPane.INFORMATION_MESSAGE, imagenAviso);
             return;

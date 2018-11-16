@@ -1,9 +1,14 @@
 package Frame;
 
 import AppPackage.AnimationClass;
+import static Frame.Medicamento.tblMedicamento;
 import LDI.TablaEmpleado;
+import LDI.TablaMedicamento;
 import ModeloComboBox.Ciudad;
+import ModeloComboBox.CondicionMedicamento;
 import ModeloComboBox.Departamento;
+import ModeloComboBox.Presentacion;
+import ModeloComboBox.Proveedores;
 import java.awt.Image;
 import java.awt.event.ItemEvent;
 import java.awt.image.BufferedImage;
@@ -12,6 +17,7 @@ import java.io.File;
 import java.io.InputStream;
 import java.sql.Blob;
 import java.sql.ResultSet;
+import java.util.Calendar;
 import javax.imageio.ImageIO;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.Icon;
@@ -238,6 +244,11 @@ public class Empleado extends javax.swing.JInternalFrame {
         btnActualizar.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Actualizar2.png"))); // NOI18N
         btnActualizar.setRolloverSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Actualizar2.png"))); // NOI18N
         btnActualizar.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Actualizar.png"))); // NOI18N
+        btnActualizar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnActualizarActionPerformed(evt);
+            }
+        });
         getContentPane().add(btnActualizar, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 320, -1, -1));
 
         btnBuscar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Buscar.png"))); // NOI18N
@@ -263,6 +274,11 @@ public class Empleado extends javax.swing.JInternalFrame {
         btnEliminar.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Eliminar2.png"))); // NOI18N
         btnEliminar.setRolloverSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Eliminar2.png"))); // NOI18N
         btnEliminar.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Eliminar.png"))); // NOI18N
+        btnEliminar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnEliminarActionPerformed(evt);
+            }
+        });
         getContentPane().add(btnEliminar, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 320, -1, -1));
 
         btnLimpiar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Limpiar.png"))); // NOI18N
@@ -774,6 +790,7 @@ public class Empleado extends javax.swing.JInternalFrame {
             
             txtRutaImagen.setText((String) modelo.getValueAt(tblEmpleado.getSelectedRow(), 8));
             
+            //Cargamos la foto a un JLabel
             Image foto = getToolkit().getImage(txtRutaImagen.getText());
             foto= foto.getScaledInstance(100, 100, 1);
             lblFoto.setIcon(new ImageIcon(foto));
@@ -792,6 +809,205 @@ public class Empleado extends javax.swing.JInternalFrame {
     private void btnLimpiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLimpiarActionPerformed
         limpiarCampo();
     }//GEN-LAST:event_btnLimpiarActionPerformed
+
+    private void btnActualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnActualizarActionPerformed
+        
+        //Saber si la tabla esta vacia esto me permite decirle al Usuario que presione el boton de buscar registros.
+        if(tblEmpleado.getRowCount() == 0){
+            JOptionPane.showMessageDialog(null, "Por favor, Presione el botón de Bucar" , "¡Aviso!" , JOptionPane.INFORMATION_MESSAGE , imagenAviso );
+            return;
+        }
+
+        if (tblEmpleado.getSelectedRow()== -1) {
+            JOptionPane.showMessageDialog(null, "Por favor, seleccione una fila" , "¡Aviso!" , JOptionPane.INFORMATION_MESSAGE , imagenAviso );
+            return;
+        }
+        //Validación de cada una de las cajas de Texto (Campos vacios).
+
+        if(txtIdentificacion.getText().equals("")){
+            JOptionPane.showMessageDialog(null, "Por favor, Digita la identificacion del Empleado" , "¡Aviso!" , JOptionPane.INFORMATION_MESSAGE , imagenAviso);
+            txtIdentificacion.requestFocus();
+            return;
+        }
+         //Validar el campo de Nombre de Medicamento.
+        if (txtNombreEmpleado.getText().equals("")) {
+            JOptionPane.showMessageDialog(null, "Por favor, Digite el nombre del Empleado" , "¡Aviso!" , JOptionPane.INFORMATION_MESSAGE , imagenAviso);
+            txtNombreEmpleado.requestFocus();
+            return;
+        }
+
+        //Validar el comboBox de Condicion, estado  del medicamento Sólido, liquido etc.
+        if (cmbDepartamento.getSelectedIndex() == 0) {
+            JOptionPane.showMessageDialog(null, "Por favor, Selecciona el Departamento" , "¡Aviso!" , JOptionPane.INFORMATION_MESSAGE , imagenAviso);
+            cmbDepartamento.requestFocus();
+            return;
+        }
+        
+        //Validar el comboBox de Presentación pastillas, aerosol etc.
+        if (cmbCiudad.getSelectedIndex() == 0) {
+            JOptionPane.showMessageDialog(null, "Por favor, Selecciona la Ciudad" , "¡Aviso!" , JOptionPane.INFORMATION_MESSAGE , imagenAviso);
+            cmbCiudad.requestFocus();
+            return;
+        }
+       
+        //Validar el campo e Precio de venta.
+        if (txtDireccion.getText().equals("")) {
+            JOptionPane.showMessageDialog(null, "Por favor, Digite la direccion" , "¡Aviso!" , JOptionPane.INFORMATION_MESSAGE , imagenAviso);
+            txtDireccion.requestFocus();
+            return;
+        }
+        //Validar el campo de cantidad del medicamento.
+        if (txtCorreo.getText().equals("")) {
+            JOptionPane.showMessageDialog(null, "Por favor, Digita el correo electronico" , "¡Aviso!" , JOptionPane.INFORMATION_MESSAGE , imagenAviso);
+            txtCorreo.requestFocus();
+            return;
+        }
+        //Validar el sitio donde se encentra el medicamento en la farmacia
+        if (txtTelefono.getText().equals("")) {
+            JOptionPane.showMessageDialog(null, "Por favor, Digita el número de telefono" , "¡Aviso!" , JOptionPane.INFORMATION_MESSAGE , imagenAviso);
+            txtTelefono.requestFocus();
+            return;
+        }
+        //Validar el comboBox de Presentación pastillas, aerosol etc.
+        if (cmbEstado.getSelectedIndex() == 0) {
+            JOptionPane.showMessageDialog(null, "Por favor, Selecciona el estado" , "¡Aviso!" , JOptionPane.INFORMATION_MESSAGE , imagenAviso);
+            cmbEstado.requestFocus();
+            return;
+        }
+        if (txtRutaImagen.getText().equals("")) {
+            JOptionPane.showMessageDialog(null, "Por favor, Selecciona una imagen ¡Acuda al Botón!" , "¡Aviso!" , JOptionPane.INFORMATION_MESSAGE , imagenAviso);
+            btnSeleccionarImagen.requestFocus();
+            return;
+        }
+        
+        
+        
+        try {
+            
+            
+            // Defino el modelo para el JTable
+            modelo = (DefaultTableModel) tblEmpleado.getModel();
+            //Instaciación de la TablaProveedor para acceder al los metodos del 
+            TablaEmpleado objEmpleado = new TablaEmpleado();
+
+            String departamento = (String) modelo.getValueAt(tblEmpleado.getSelectedRow(), 2);
+            String ciudad = (String) modelo.getValueAt(tblEmpleado.getSelectedRow(), 3);
+
+            int identificacion = Integer.parseInt(txtIdentificacion.getText());
+            String nombreEmpleado = txtNombreEmpleado.getText();
+            String direccion = txtDireccion.getText();
+            String correo = txtCorreo.getText();
+            String telefono = txtTelefono.getText();
+            char estado;
+
+            if (cmbEstado.getSelectedIndex() == 1) {
+                estado = 'A';
+            } else {
+                estado = 'I';
+            }
+            String rutaImagen = txtRutaImagen.getText();
+            
+            //Definimos esta variable porque el método se creó con anterioridar recibiendo este atributo
+            //pero en si no se utiliza ya que en la clase TablaEmpleado se realiza el carga nada más con la url
+            byte logico = (byte) 1 + 1;
+
+        
+            if (cmbDepartamento.getSelectedItem().equals(departamento) && cmbCiudad.getSelectedItem().equals(ciudad)) {
+                
+                boolean resultado = objEmpleado.actualizarEmpleado(identificacion, nombreEmpleado, 0, 0, direccion, correo, telefono, estado, rutaImagen, logico);
+                if (resultado == true) {
+                    JOptionPane.showMessageDialog(null, "La información se actualizó correctamente.");
+
+                    //Se realiza la limpieza al JTable, y de los campos
+                    limpiarCampo();
+                    //Mostramos las columnas (La informacion que identifica a cada tabla en la BD)
+                    getColumn();
+                    //Actualizamos la tabla (Buscamos todos los registros)
+                    cargarTabla(tblEmpleado);
+                } else {
+                    JOptionPane.showMessageDialog(null, "Error al actualizar.");
+                }
+            } else {
+                //Instanciacion de las clases pertenecientes al Package ModeloComboBox, me permite saber que opción se ha seleccionado y con su respectivo Id
+                
+                Departamento objDepartamento = (Departamento) cmbDepartamento.getSelectedItem();
+                Ciudad objCiudad = (Ciudad) cmbCiudad.getSelectedItem();
+                
+                int idDepartamento = objDepartamento.getId();
+                int idCiudad = objCiudad.getId();
+                
+                boolean resultado = objEmpleado.actualizarEmpleado(identificacion, nombreEmpleado, idDepartamento, idCiudad, direccion, correo, telefono, estado, rutaImagen, logico);
+                if (resultado == true) {
+                    JOptionPane.showMessageDialog(null, "La información se actualizó correctamente.");
+
+                    //Se realiza la limpieza al JTable y las cajas de texto
+                    limpiarCampo();
+                    //Mostramos las columnas (La informacion que identifica a cada tabla en la BD)
+                    getColumn();
+                    //Actualizamos la tabla (Buscamos todos los registros)
+                    cargarTabla(tblEmpleado);
+                } else {
+                    JOptionPane.showMessageDialog(null, "Error al actualizar.");
+                }
+            }
+            
+        } catch (Exception e) {
+            
+            JOptionPane.showMessageDialog(null, "Lo sentimos, sucedió un problema inesperado, ¡Por vafor, vuelve a intentarlo!");
+        }
+    }//GEN-LAST:event_btnActualizarActionPerformed
+
+    private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
+        
+        //Saber si la tabla esta vacia esto me permite decirle al Usuario que presione el boton de buscar registros.
+        if(tblEmpleado.getRowCount() == 0){
+            JOptionPane.showMessageDialog(null, "Por favor, Presione el botón de Bucar" , "¡Aviso!" , JOptionPane.INFORMATION_MESSAGE , imagenAviso );
+            return;
+        }
+
+        if (tblEmpleado.getSelectedRow()== -1) {
+            JOptionPane.showMessageDialog(null, "Por favor, seleccione una fila" , "¡Aviso!" , JOptionPane.INFORMATION_MESSAGE , imagenAviso );
+            return;
+        }
+        
+        if(txtIdentificacion.getText().equals("")){
+            JOptionPane.showMessageDialog(null, "Lo sentimos, sin el código no se puede realizar la eliminación, ¡vuelva a cargar el registro!" , "¡Aviso!" , JOptionPane.INFORMATION_MESSAGE , imagenAviso);
+            txtIdentificacion.requestFocus();
+            return;
+        }
+        
+        // Defino el modelo para el JTable
+        modelo = (DefaultTableModel) tblEmpleado.getModel();
+        
+        TablaEmpleado objEmpleado = new TablaEmpleado();
+        
+        try {
+             
+            // Asigno el indice del elemento seleccionado
+            indiceFila = tblEmpleado.getSelectedRow();
+            // Elimino el registro del JTable
+            modelo.removeRow(indiceFila);
+   
+            
+            //Declaración de la vaiable para obtener el valor que se encuentra en la caja de texto correspondiente.
+            int identificacion = Integer.parseInt(txtIdentificacion.getText());
+            boolean resultado = objEmpleado.eliminarEmpleado(identificacion);
+            if (resultado == true) {
+                JOptionPane.showMessageDialog(null, "Se Eliminó el registro correctamente.");
+                limpiarCampo();
+                //Mostramos las columnas (La informacion que identifica a cada tabla en la BD)
+                getColumn();
+                //Actualizamos la tabla (Buscamos todos los registros)
+                cargarTabla(tblEmpleado);
+            } else {
+                JOptionPane.showMessageDialog(null, "Error al Eliminar.");
+            }
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "Lo sentimos, ocurrió algo inesperado ¡Por favor, vuelva a intentarlo!" + e);
+        }
+        
+        
+    }//GEN-LAST:event_btnEliminarActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

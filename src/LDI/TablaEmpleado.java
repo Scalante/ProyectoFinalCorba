@@ -36,6 +36,7 @@ public class TablaEmpleado extends EmpleadoPOA {
             pst.setString(8, String.valueOf(estado));
             pst.setString(9, urlImagen);
             
+            //Convierte una url a cadena de bytes (0 y 1)
             archivofoto = new FileInputStream(urlImagen);
             //SetBinaryStream permite almacenar cantidad de bytes en la base de datos
             pst.setBinaryStream(10, archivofoto);
@@ -62,22 +63,58 @@ public class TablaEmpleado extends EmpleadoPOA {
             
             if (idDepartamento == 0 && idCiudad == 0) {
                 
-               sentencia = "UPDATE proveedores SET nombre = '"+nombre+"', direccion = '"+direcion+"', telefono = '"+telefono+"' WHERE rues = '"+identificacion+"' ";   
+               sentencia = "UPDATE empleado SET nombre = ? , direccion = ?, correo = ?, telefono = ?, estado=?, urlImagen=?,imagen=? WHERE identificacion = ?";  
             }
             else {
-                sentencia = "UPDATE proveedores SET nombre = '"+nombre+"', prv_departamento_id = '"+idDepartamento+"', ciudad_id = '"+idCiudad+"', direccion = '"+direcion+"', telefono = '"+telefono+"' WHERE rues = '"+identificacion+"' ";
+                sentencia = "UPDATE empleado SET nombre = ? , emp_departamento_id = ?, emp_ciudad_id = ?, direccion = ?, correo = ?, telefono = ?, estado=?, urlImagen=?,imagen=? WHERE identificacion = ?";
             }
             
             //Se realiza la conexión con la base de datos
             objConect.conectar();
-            Statement st = objConect.conex.createStatement();
-            int valor = st.executeUpdate(sentencia);
+             PreparedStatement pst = objConect.conex.prepareStatement(sentencia);
+            
+             
+            FileInputStream  archivofoto;
+            
+            
+            if (idDepartamento == 0 && idCiudad == 0){
+                pst.setString(1, nombre);
+                pst.setString(2, direcion);
+                pst.setString(3, correo);
+                pst.setString(4, telefono);
+                pst.setString(5, String.valueOf(estado));
+                pst.setString(6, urlImagen);
+                
+                //Convierte una url a cadena de bytes (0 y 1)
+                archivofoto = new FileInputStream(urlImagen);
+                //SetBinaryStream permite almacenar cantidad de bytes en la base de datos
+                pst.setBinaryStream(7, archivofoto);
+                pst.setInt(8,identificacion);
+            }
+            else {
+                pst.setString(1, nombre);
+                pst.setInt(2, idDepartamento);
+                pst.setInt(3, idCiudad);
+                pst.setString(4, direcion);
+                pst.setString(5, correo);
+                pst.setString(6, telefono);
+                pst.setString(7, String.valueOf(estado));
+                pst.setString(8, urlImagen);
+                //Convierte una url a cadena de bytes (0 y 1)
+                archivofoto = new FileInputStream(urlImagen);
+                //SetBinaryStream permite almacenar cantidad de bytes en la base de datos
+                pst.setBinaryStream(9, archivofoto);
+                pst.setInt(10,identificacion);
+            }
+            
+            int valor = pst.executeUpdate();
+ 
             if(valor>0){
                 resultado = true;
             }
             //Se cierran las conexiones.
             objConect.conex.close();
-            st.close();
+            pst.close();
         } catch (Exception e) {
            JOptionPane.showMessageDialog(null, "Error al actualizar. "+e);
         }        
@@ -88,7 +125,7 @@ public class TablaEmpleado extends EmpleadoPOA {
     public boolean eliminarEmpleado(int identificacion) {
         boolean resultado = false;
         try {
-            String sql = "DELETE FROM proveedores WHERE rues =" + identificacion;
+            String sql = "DELETE FROM empleado WHERE identificacion =" + identificacion;
             //Se realiza la conexión con la base de datos
             objConect.conectar();
             Statement st = objConect.conex.createStatement();
@@ -100,7 +137,7 @@ public class TablaEmpleado extends EmpleadoPOA {
             objConect.conex.close();
             st.close();
         } catch (Exception e) {
-           JOptionPane.showMessageDialog(null, "Error al eliminar. ru"+e.getMessage());
+           JOptionPane.showMessageDialog(null, "Error al eliminar."+e.getMessage());
         }        
         return resultado;
     }

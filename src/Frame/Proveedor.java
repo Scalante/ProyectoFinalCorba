@@ -1,6 +1,7 @@
 package Frame;
 
 import AppPackage.AnimationClass;
+import static Frame.Medicamento.tblMedicamento;
 import LDI.TablaProveedor;
 import ModeloComboBox.Ciudad;
 import ModeloComboBox.Departamento;
@@ -134,6 +135,23 @@ public class Proveedor extends javax.swing.JInternalFrame {
         setBackground(new java.awt.Color(255, 255, 255));
         setClosable(true);
         setIconifiable(true);
+        addInternalFrameListener(new javax.swing.event.InternalFrameListener() {
+            public void internalFrameActivated(javax.swing.event.InternalFrameEvent evt) {
+            }
+            public void internalFrameClosed(javax.swing.event.InternalFrameEvent evt) {
+            }
+            public void internalFrameClosing(javax.swing.event.InternalFrameEvent evt) {
+                formInternalFrameClosing(evt);
+            }
+            public void internalFrameDeactivated(javax.swing.event.InternalFrameEvent evt) {
+            }
+            public void internalFrameDeiconified(javax.swing.event.InternalFrameEvent evt) {
+            }
+            public void internalFrameIconified(javax.swing.event.InternalFrameEvent evt) {
+            }
+            public void internalFrameOpened(javax.swing.event.InternalFrameEvent evt) {
+            }
+        });
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         btnGuardar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/IconoGuardar.png"))); // NOI18N
@@ -552,7 +570,20 @@ public class Proveedor extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_tblProveedorMouseClicked
 
     private void btnActualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnActualizarActionPerformed
-         //Validación de cada una de las cajas de Texto (Campos vacios).
+
+        //Saber si la tabla esta vacia esto me permite decirle al Usuario que presione el boton de buscar registros.
+        if(tblProveedor.getRowCount() == 0){
+            JOptionPane.showMessageDialog(null, "Por favor, Presione el botón de Bucar" , "¡Aviso!" , JOptionPane.INFORMATION_MESSAGE , imagenAviso );
+            return;
+        }
+
+        if (tblProveedor.getSelectedRow()== -1) {
+            JOptionPane.showMessageDialog(null, "Por favor, seleccione una fila" , "¡Aviso!" , JOptionPane.INFORMATION_MESSAGE , imagenAviso );
+            return;
+        }
+
+
+        //Validación de cada una de las cajas de Texto (Campos vacios).
         if (txtRues.getText().equals("")) {
             JOptionPane.showMessageDialog(null, "Por favor, Digita el Rues de la Empresa", "¡Aviso!", JOptionPane.INFORMATION_MESSAGE, imagenAviso);
             txtRues.requestFocus();
@@ -628,7 +659,7 @@ public class Proveedor extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_btnActualizarActionPerformed
 
     private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
-         //Saber si la tabla esta vacia esto me permite decirle al Usuario que presione el boton de buscar registros.
+        //Saber si la tabla esta vacia esto me permite decirle al Usuario que presione el boton de buscar registros.
         if (tblProveedor.getRowCount() == 0) {
             JOptionPane.showMessageDialog(null, "Por favor, Presione el botón de Bucar", "¡Aviso!", JOptionPane.INFORMATION_MESSAGE, imagenAviso);
             return;
@@ -708,6 +739,18 @@ public class Proveedor extends javax.swing.JInternalFrame {
         txtDireccion.setEditable(false);
         txtTelefono.setEditable(false);
     }//GEN-LAST:event_btnEliminarMouseMoved
+
+    private void formInternalFrameClosing(javax.swing.event.InternalFrameEvent evt) {//GEN-FIRST:event_formInternalFrameClosing
+        int dialog = JOptionPane.YES_NO_OPTION;
+        //Almacena la opción que el usuario escoja (1 -> no) (0 -> Si).
+        int result = JOptionPane.showConfirmDialog(null, "¿Está seguro de cerrar la ventana?" , "Advertencia" , dialog);
+        
+        //Si el usuario presiona Si automaticamente se cierra la ventana.
+        if (result == 0) {
+            MenuAdministrador.btnProveedor.setEnabled(true);
+            this.dispose();
+        }
+    }//GEN-LAST:event_formInternalFrameClosing
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
